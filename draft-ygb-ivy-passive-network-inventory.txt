@@ -5,7 +5,7 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                                  A. Guo
-Expires: 27 October 2025                                       Futurewei
+Expires: 30 October 2025                                       Futurewei
                                                                  I. Busi
                                                                   Huawei
                                                                M. Boroon
@@ -28,7 +28,7 @@ Expires: 27 October 2025                                       Futurewei
                                                             China Mobile
                                                        A. Sakalabhaktula
                                                                  Radisys
-                                                           25 April 2025
+                                                           28 April 2025
 
 
             A YANG Data Model for Passive Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Yu, et al.               Expires 27 October 2025                [Page 1]
+Yu, et al.               Expires 30 October 2025                [Page 1]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
@@ -68,7 +68,7 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 October 2025.
+   This Internet-Draft will expire on 30 October 2025.
 
 Copyright Notice
 
@@ -89,30 +89,33 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Examples of Passive Network Inventory . . . . . . . . . . . .   3
      2.1.  Passive Infrastructure in Optical Transport Networks  . .   4
-   3.  Terminology and Notations . . . . . . . . . . . . . . . . . .   4
-     3.1.  Requirements Notations  . . . . . . . . . . . . . . . . .   5
-     3.2.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   5
-     3.3.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   6
-     3.4.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   6
-   4.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .   7
-   5.  Model Tree Diagram  . . . . . . . . . . . . . . . . . . . . .   7
-   6.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .   8
-     6.1.  YANG Data Model for Passive Device Inventory  . . . . . .   8
-   7.  Manageability Considerations  . . . . . . . . . . . . . . . .  19
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
-   10. Normative References  . . . . . . . . . . . . . . . . . . . .  20
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
+     2.2.  Passive Infrastructure in Optical Access Networks . . . .   5
+     2.3.  Passive Infrastructure in Microwave Networks  . . . . . .   6
+   3.  Terminology and Notations . . . . . . . . . . . . . . . . . .   6
+     3.1.  Requirements Notations  . . . . . . . . . . . . . . . . .   6
+     3.2.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   6
+     3.3.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .   7
+     3.4.  Prefixes in Data Node Names . . . . . . . . . . . . . . .   7
+   4.  Modeling Considerations . . . . . . . . . . . . . . . . . . .   8
+     4.1.  Relationship with Network Inventory . . . . . . . . . . .   8
+     4.2.  Relationship with Topology  . . . . . . . . . . . . . . .   8
+   5.  YANG Model Overview . . . . . . . . . . . . . . . . . . . . .   8
+   6.  Model Tree Diagram  . . . . . . . . . . . . . . . . . . . . .   8
+   7.  YANG Modules  . . . . . . . . . . . . . . . . . . . . . . . .  10
+     7.1.  YANG Data Model for Passive Device Inventory  . . . . . .  10
+   8.  Manageability Considerations  . . . . . . . . . . . . . . . .  20
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  20
+   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  21
 
 
 
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 2]
+Yu, et al.               Expires 30 October 2025                [Page 2]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
+
+   11. Normative References  . . . . . . . . . . . . . . . . . . . .  21
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
 1.  Introduction
 
@@ -162,10 +165,7 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
 
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 3]
+Yu, et al.               Expires 30 October 2025                [Page 3]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
@@ -187,20 +187,21 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    places through connectors or built-in modules for reducing optical
    power.
 
-   Figure 1 illustrates a typical passive infrastructure for optical
-   transport networks.
+   Figure 1 illustrates a typical passive infrastructure for a point-to-
+   point optical transport network.
 
+                                    Port
   +--------------+                  +-+                 +--------------+
-  | +---+        |<--Cable--->+-----+ +----+<---Cable-->|        +---+ |
+  | +---+        |<--Cable--->+-----+ +----+<--Cable--->|        +---+ |
   | |  +++       |            |     +-+    |            |       +++  | |
   | |  ++* +---+ |Cable  Cable|    /   \   |Cable  Cable| +---+ *++  | |
-  | |NE |\+++  | |Seg. - Seg. |  /      \  |Seg.  -Seg. | |  +++/| NE| |
-  | +---+ *++ +++|----| |----+++/        \+++----| |----|+++ ++* +---+ |
-  |        |  + +|----| |----+ |----------| +----| |----|+ +  |        |
-  |       +++ +++|----| |----+++\        /+++----| |----|+++ +++       |
-  | +---+/*++  | |     -      |  \      /  |      -     | |  ++*\+---+ |
-  | |  +*+ |ODF| |    Joint   |   \    /   |     Joint  | |ODF| +*+  | |
-  | |  +++ +---+ |    Box     |    \  /    |     Box    | +---+ +++  | |
+  | |NE |\+++  | |Seg. - Seg. |  /      \  |Seg. - Seg. | |  +++/| NE| |
+  | +---+ *++ +++|<-->| |<-->+++/        \+++<->| |<--->|+++ ++* +---+ |
+  |        |  + +|----| |----+ |----------| +---| |-----|+ +  |        |
+  |       +++ +++|----| |----+++\        /+++---| |-----|+++ +++       |
+  | +---+/*++  | |     -      |  \      /  |     -      | |  ++*\+---+ |
+  | |  +*+ |ODF| |    Joint   |   \    /   |    Joint   | |ODF| +*+  | |
+  | |  +++ +---+ |    Box     |    \  /    |    Box     | +---+ +++  | |
   | |NE |        |            |     *-+    |            |        | NE| |
   | +---+        |            +-----+ +----+            |        +---+ |
   |Central Office|                  +-+                 |Central Office|
@@ -210,7 +211,6 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
      Figure 1: Passive Infrastructure for Optical Transport Networks
 
-3.  Terminology and Notations
 
 
 
@@ -221,10 +221,72 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
 
-Yu, et al.               Expires 27 October 2025                [Page 4]
+Yu, et al.               Expires 30 October 2025                [Page 4]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
+
+2.2.  Passive Infrastructure in Optical Access Networks
+
+   Passive infrastructure in optical access networks, often referred to
+   as Optical Distribution Network (ODN), is the physical fiber
+   opticnetwork that connects the Optical Line Terminal (OLT) in the
+   central office to the Optical Network Unit/Terminal (ONU/ONT) at the
+   user's location.  ODN uses one or multiple cascaded passive optical
+   splitter to divide the signal from a single OLT into multiple paths
+   to serve multiple users using a single fiber.  ODN comprises optical
+   fiber cables, connectors, and many auxiliary components.  There are
+   multiple types of fibers, including feeder fibers (connecting the OLT
+   to a fiber distribution point (FDT)), distribution fibers (connecting
+   the distribution point to access points), and drop fibers (connecting
+   access points to ONUs/ONTs).  The ODN cabinet acts as a central point
+   where different fiber optic cables and components are hosted, and
+   these ODN cabinets are often located on street corners, utility
+   poles, or other accessible areas along the route to the end users.
+
+   Figure 2 illustrates a typical passive infrastructure for optical
+   access networks.
+
+                                                             Drop
+                                                             Cable
+                                                             <--->
+                                                          +-+     +-+ONU
+   +--------------+                                       | |-----+-+
+   | +---+        |<-Feeder Cable->   <-Distr.->            |
+   | |  +++       |                     Cable    /|-------| |-----+-+ONU
+   | |  ++* +---+ | Cable    Cable              / |       +-+     +-+
+   | |NE |\+++  | | Seg.  -  Seg.    /|--------x  |FDT
+   | +---+ *++ +++|<---->/ \<---->  / |         \ |       +-+
+   | (OLT)  |  + +|------| |------x/  |          \|-------| |-----+-+ONU
+   |       +++ +++|------| |------x   | cccccccc          +-+     +-+
+   | +---+/*++  | |      \ /       \  | c   /| c         Fiber
+   | |  +*+ |ODF| |       -         \ | c  / | c         Access
+   | |  +++ +---+ |     Joint        \|-c-x  | c         Point
+   | |NE |        |     Box        FDT  c  \ | c                  +-+ONU
+   | +---+        |                     c   \|-c------------------+-+
+   | (OLT)        |                     c FDT <c---Drop Cable---->
+   |              |                     c      c
+   |Central Office|                     cccccccc
+   +--------------+                     Cabinet
+
+        Figure 2: Passive Infrastructure for Optical Access Networks
+
+
+
+
+
+
+
+Yu, et al.               Expires 30 October 2025                [Page 5]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
+2.3.  Passive Infrastructure in Microwave Networks
+
+   TBD
+
+3.  Terminology and Notations
 
 3.1.  Requirements Notations
 
@@ -269,18 +331,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
       management interfaces and is typically deployed in a location
       tracked by the network operator.
 
+
+
+Yu, et al.               Expires 30 October 2025                [Page 6]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    *  Active device: refers to a physical device that contains hardware
       and software and is managable through communication interfaces.
       Network elements defined by
       [I-D.draft-ietf-ivy-network-inventory-yang] are examples of active
       device.
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 5]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
-
 
    *  Optical Cable: Refers to a wire that uses optical fiber as a
       medium to transmit optical signals.  Optical cable is a concept of
@@ -327,18 +389,22 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
 
-
-
-
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 6]
+Yu, et al.               Expires 30 October 2025                [Page 7]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
-4.  YANG Model Overview
+4.  Modeling Considerations
+
+4.1.  Relationship with Network Inventory
+
+   TBD
+
+4.2.  Relationship with Topology
+
+   TBD
+
+5.  YANG Model Overview
 
    The YANG data model in this draft augments the model defined in
    [I-D.draft-ietf-ivy-network-inventory-yang] with the following
@@ -347,7 +413,7 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    cables: a list of optical cables with each containing a list of cable
    segments.
 
-5.  Model Tree Diagram
+6.  Model Tree Diagram
 
    module: ietf-ni-passive-device
 
@@ -376,6 +442,14 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
        |  |     +--:(active)
        |  |        +--rw ne-ref?          leafref
        |  |        +--rw component-ref?   leafref
+
+
+
+Yu, et al.               Expires 30 October 2025                [Page 8]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
        |  +--rw optical-cable-segment* [id]
        |     +--rw id                string
        |     +--ro uuid?             yang:uuid
@@ -386,14 +460,6 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
        |     +--rw fiber-type?       identityref
        |     +--rw length?           uint32
        |     +--rw attenuation?      decimal64
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 7]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
-
-
        |     +--rw serial-num?       string
        |     +--rw mfg-name?         string
        |     +--rw part-number?      string
@@ -431,24 +497,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
              +--rw port-type?        identityref
              +--rw fiber-core-num?   uint32
 
-            Figure 2: Tree diagram for passive network inventory
-
-6.  YANG Modules
-
-6.1.  YANG Data Model for Passive Device Inventory
+            Figure 3: Tree diagram for passive network inventory
 
 
 
-
-
-
-
-
-
-Yu, et al.               Expires 27 October 2025                [Page 8]
+Yu, et al.               Expires 30 October 2025                [Page 9]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
+
+7.  YANG Modules
+
+7.1.  YANG Data Model for Passive Device Inventory
 
    <CODE BEGINS> file "ietf-ni-passive-device@2024-10-21.yang"
    module ietf-ni-passive-device {
@@ -494,18 +554,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
        The model fully conforms to the Network Management
        Datastore Architecture (NMDA).
 
-       Copyright (c) 2023 IETF Trust and the persons
-       identified as authors of the code.  All rights reserved.
-
-       Redistribution and use in source and binary forms, with or
 
 
 
-Yu, et al.               Expires 27 October 2025                [Page 9]
+Yu, et al.               Expires 30 October 2025               [Page 10]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+       Copyright (c) 2023 IETF Trust and the persons
+       identified as authors of the code.  All rights reserved.
+
+       Redistribution and use in source and binary forms, with or
        without modification, is permitted pursuant to, and subject
        to the license terms contained in, the Revised BSD License
        set forth in Section 4.c of the IETF Trust's Legal Provisions
@@ -550,18 +610,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
        base fiber-type;
        description
          "ITU-T G.652B fiber.";
-     }
-     identity G652C {
-       base fiber-type;
-       description
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 10]
+Yu, et al.               Expires 30 October 2025               [Page 11]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+     }
+     identity G652C {
+       base fiber-type;
+       description
          "ITU-T G.652C fiber.";
      }
      identity G652D {
@@ -606,17 +666,17 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
      }
      identity other {
        base fiber-type;
-       description
-         "Other type of fiber.";
-     }
 
 
 
-
-Yu, et al.               Expires 27 October 2025               [Page 11]
+Yu, et al.               Expires 30 October 2025               [Page 12]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
+
+       description
+         "Other type of fiber.";
+     }
 
      identity cable-type {
        description
@@ -662,18 +722,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
        description
          "Service port.";
      }
-     identity input-port {
-       base passive-port-type;
-       description
-         "Input port.";
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 12]
+Yu, et al.               Expires 30 October 2025               [Page 13]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+     identity input-port {
+       base passive-port-type;
+       description
+         "Input port.";
      }
      identity output-port {
        base passive-port-type;
@@ -718,18 +778,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
      identity FAT {
        base passive-device-type;
        description
-         "Fiber Access Terminal.";
-     }
-     identity FDT {
-       base passive-device-type;
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 13]
+Yu, et al.               Expires 30 October 2025               [Page 14]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+         "Fiber Access Terminal.";
+     }
+     identity FDT {
+       base passive-device-type;
        description
          "Fiber Distribution Terminal.";
      }
@@ -774,18 +834,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
                   'ni-passive:active-device')";
              description
                "Referenced Network Element (NE).";
-           }
-           leaf component-ref {
-             type leafref {
-               path "/ni:network-inventory/ni:network-elements"
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 14]
+Yu, et al.               Expires 30 October 2025               [Page 15]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+           }
+           leaf component-ref {
+             type leafref {
+               path "/ni:network-inventory/ni:network-elements"
                   + "/ni:network-element[ni:ne-id=current()/.."
                   + "/ne-ref]/ni:components/ni:component"
                   + "/ni:component-id";
@@ -830,18 +890,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
            type string;
            description
              "Cable segment identifier.";
-         }
-         uses ni:common-entity-attributes;
-         leaf fiber-core-num {
-           type uint32;
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 15]
+Yu, et al.               Expires 30 October 2025               [Page 16]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+         }
+         uses ni:common-entity-attributes;
+         leaf fiber-core-num {
+           type uint32;
            description
              "Number of fiber cores within the cable.";
          }
@@ -886,18 +946,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
      }
 
      grouping optical-cables {
-       description
-         "Attributes applicable to optical fiber cables.";
-
-       list optical-cable {
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 16]
+Yu, et al.               Expires 30 October 2025               [Page 17]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+       description
+         "Attributes applicable to optical fiber cables.";
+
+       list optical-cable {
          key "id";
          description
            "List of optical fiber cables.";
@@ -942,18 +1002,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
          uses ni:common-entity-attributes;
          leaf port-type {
            type identityref {
-             base passive-port-type;
-           }
-           description
-             "Type of passive port.";
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 17]
+Yu, et al.               Expires 30 October 2025               [Page 18]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+             base passive-port-type;
+           }
+           description
+             "Type of passive port.";
          }
          leaf fiber-core-num {
            type uint32;
@@ -998,18 +1058,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
          }
          uses passive-device-ports;
        }
-     }
-
-     /* Augmentation */
-     augment "/ni:network-inventory" {
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 18]
+Yu, et al.               Expires 30 October 2025               [Page 19]
 
 Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
+     }
+
+     /* Augmentation */
+     augment "/ni:network-inventory" {
          description
            "Augment network inventory with information
             for optical cables and passive devices.";
@@ -1019,13 +1079,13 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    }
    <CODE ENDS>
 
-             Figure 3: YANG model for passive network inventory
+             Figure 4: YANG model for passive network inventory
 
-7.  Manageability Considerations
+8.  Manageability Considerations
 
    TBD.
 
-8.  Security Considerations
+9.  Security Considerations
 
    The YANG module specified in this document defines a schema for data
    that is designed to be accessed via network management protocols such
@@ -1049,6 +1109,19 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    [RFC8795] are also applicable to their subtrees in the module defined
    in this document.
 
+
+
+
+
+
+
+
+
+Yu, et al.               Expires 30 October 2025               [Page 20]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
@@ -1056,17 +1129,7 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    [RFC8795] are also applicable to their subtrees in the module defined
    in this document.
 
-
-
-
-
-
-Yu, et al.               Expires 27 October 2025               [Page 19]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
-
-
-9.  IANA Considerations
+10.  IANA Considerations
 
    It is proposed to IANA to assign new URIs from the "IETF XML
    Registry" [RFC3688] as follows:
@@ -1083,7 +1146,7 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
       prefix: ni-passive
       reference: RFC XXXX
 
-10.  Normative References
+11.  Normative References
 
    [I-D.draft-ietf-ivy-network-inventory-location]
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1106,6 +1169,15 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+
+
+
+
+Yu, et al.               Expires 30 October 2025               [Page 21]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/info/rfc3688>.
@@ -1114,13 +1186,6 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
-
-
-
-Yu, et al.               Expires 27 October 2025               [Page 20]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
-
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
@@ -1161,22 +1226,18 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/info/rfc8446>.
 
+
+
+
+Yu, et al.               Expires 30 October 2025               [Page 22]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
               DOI 10.17487/RFC8453, August 2018,
               <https://www.rfc-editor.org/info/rfc8453>.
-
-
-
-
-
-
-
-
-Yu, et al.               Expires 27 October 2025               [Page 21]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
-
 
    [RFC8795]  Liu, X., Bryskin, I., Beeram, V., Saad, T., Shah, H., and
               O. Gonzalez de Dios, "YANG Data Model for Traffic
@@ -1222,16 +1283,17 @@ Authors' Addresses
    Email: tom.van_caenegem@nokia.com
 
 
+
+
+Yu, et al.               Expires 30 October 2025               [Page 23]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    Swaminathan 1. S.
    Nokia
 
    Email: swaminathan.1.s@nokia.com
-
-
-
-Yu, et al.               Expires 27 October 2025               [Page 22]
-
-Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
    Swaminathan B.
@@ -1276,6 +1338,14 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
    Email: zhaoyangyjy@chinamobile.com
 
 
+
+
+
+Yu, et al.               Expires 30 October 2025               [Page 24]
+
+Internet-Draft    Passive Network Inventory YANG Model        April 2025
+
+
    Avinash Sakalabhaktula
    Radisys
 
@@ -1285,4 +1355,46 @@ Internet-Draft    Passive Network Inventory YANG Model        April 2025
 
 
 
-Yu, et al.               Expires 27 October 2025               [Page 23]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yu, et al.               Expires 30 October 2025               [Page 25]

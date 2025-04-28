@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ygb-ivy-passive-network-inventory-00" category="std">
+<rfc ipr="trust200902" docName="draft-ygb-ivy-passive-network-inventory-01" category="std">
 
   <front>
     <title abbrev="Passive Network Inventory YANG Model">A YANG Data Model for Passive Network Inventory</title>
@@ -33,8 +33,80 @@
         <email>italo.busi@huawei.com</email>
       </address>
     </author>
+    <author initials="M." surname="Boroon" fullname="Mohammad Boroon">
+      <organization>Highstreet</organization>
+      <address>
+        <email>mohammad.boroon@highstreet-technologies.com</email>
+      </address>
+    </author>
+    <author initials="S." surname="Belotti" fullname="Sergio Belotti">
+      <organization>Nokia</organization>
+      <address>
+        <email>sergio.belotti@nokia.com</email>
+      </address>
+    </author>
+    <author initials="T.V." surname="Caenegem" fullname="Tom Van Caenegem">
+      <organization>Nokia</organization>
+      <address>
+        <email>tom.van_caenegem@nokia.com</email>
+      </address>
+    </author>
+    <author initials="S.1." surname="S." fullname="Swaminathan 1. S.">
+      <organization>Nokia</organization>
+      <address>
+        <email>swaminathan.1.s@nokia.com</email>
+      </address>
+    </author>
+    <author initials="S." surname="B." fullname="Swaminathan B.">
+      <organization>Nokia</organization>
+      <address>
+        <email>swaminathan.b@nokia.com</email>
+      </address>
+    </author>
+    <author initials="N." surname="Davis" fullname="Nigel Davis">
+      <organization>Ciena</organization>
+      <address>
+        <email>ndavis@ciena.com</email>
+      </address>
+    </author>
+    <author initials="M." surname="Tilocca" fullname="Mauro Tilocca">
+      <organization>FiberCop</organization>
+      <address>
+        <email>mauro.tilocca@fibercop.it</email>
+      </address>
+    </author>
+    <author initials="B." surname="Peters" fullname="Brad Peters">
+      <organization>NBN</organization>
+      <address>
+        <email>bradpeters@nbnco.com.au</email>
+      </address>
+    </author>
+    <author initials="B.Y." surname="Yun" fullname="Bin Yu Yun">
+      <organization>ETRI</organization>
+      <address>
+        <email>byyun@etri.re.kr</email>
+      </address>
+    </author>
+    <author initials="Y." surname="Liu" fullname="Yucong Liu">
+      <organization>China Mobile</organization>
+      <address>
+        <email>liuyucongyjy@chinamobile.com</email>
+      </address>
+    </author>
+    <author initials="Y." surname="Zhao" fullname="Yang Zhao">
+      <organization>China Mobile</organization>
+      <address>
+        <email>zhaoyangyjy@chinamobile.com</email>
+      </address>
+    </author>
+    <author initials="A." surname="Sakalabhaktula" fullname="Avinash Sakalabhaktula">
+      <organization>Radisys</organization>
+      <address>
+        <email>Avinash.Sakalabhaktula@radisys.com</email>
+      </address>
+    </author>
 
-    <date year="2024" month="October" day="22"/>
+    <date year="2025" month="April" day="25"/>
 
     
     <workgroup>IVY Working Group</workgroup>
@@ -43,8 +115,8 @@
     <abstract>
 
 
-<t>This document presents a YANG data model for passive device inventory information.
-   The model enhances the base model outlined in <xref target="I-D.draft-ietf-ivy-network-inventory-yang"/>
+<t>This document presents a YANG data model for tracking and managing passive network
+   inventory. The model enhances the base model outlined in <xref target="I-D.draft-ietf-ivy-network-inventory-yang"/>
    and is intended for use in the northbound interface of a domain controller as defined in
    <xref target="RFC8453"/>.</t>
 
@@ -60,15 +132,54 @@
 
 <section anchor="introduction"><name>Introduction</name>
 
-<t>Passive devices typically include fiber, cable, optical splitters, and some passive sites. As a crucial part of communication networks, the inventory information for these devices is also essentialfor inventory management.</t>
+<t>Passive infrastructure refers to the underlying infrastructure of a telecommunication network that is 
+   not actively detectable or managable. It typically includes non-powered, non-communicating devices and components,
+   such as cabinets, cables, connectors, splitters, antennas, distribution frames, etc., that are either hosted 
+   within an actively managed device or deployed along the physical pathway between active devices.
+   Passive infrastructure serves as physical connections between active network devices, forming the 
+   backbone for network topology. As a crucial part of communication networks,the inventory information
+   for these devices is also essential for inventory management.</t>
 
 <t><xref target="I-D.draft-ietf-ivy-network-inventory-yang"/> incorporates the component concept from <xref target="RFC8348"/> to detail the equipment and holder information of a NE. This encompasses chassis, slot/sub-slot, board/sub-board, port, and transceiver. As these items are recognized by the NE through internal protocols, the passive devices that cannot be discovered by the NE are thus not included in the modeling and needs to be addressed.</t>
 
 <t><xref target="I-D.draft-ietf-ivy-network-inventory-location"/> emphasizes the relative and geographic location, e.g. equipment room, geo-loation for NE. A passive device is deployed in a certain location visible by the operator, and thus can reference the location defined by <xref target="I-D.draft-ietf-ivy-network-inventory-location"/>.</t>
 
-<t>This document focuses on modeling passive device inventory. The methods for discovering these devices 
-   are implementation-specific and fall outside the scope of this document.</t>
+<t>This document focuses on modeling passive device inventory. The scope of this model is intended to be applicable to a varity types of networks, including but not limited to, IP/MPLS, optical access, optical transport and microwave networks.
+   The methods for discovering these devices are implementation-specific and fall outside the scope of this document.</t>
 
+</section>
+<section anchor="examples-of-passive-network-inventory"><name>Examples of Passive Network Inventory</name>
+<t>Network segments built on different technologies share many common passive infrastructure components across the system. To explore the practical applications of these components, we can examine example scenarios for optical access networks, optical transport systems, and microwave networks.</t>
+
+<section anchor="passive-infrastructure-in-optical-transport-networks"><name>Passive Infrastructure in Optical Transport Networks</name>
+<t>Passive infrastructure in optical transport networks serves as the backbone for high-capacity data transmission. Key components include fiber optic cables, which act as the primary medium of long distance transmission. Optical connectors, patch panels, and splice enclosures are crucial for joining and managing fiber links. Couplers and splitters are used for signal distribution and combining.</t>
+
+<t>Within a phyical network element (NE) there are also presence of passive components. For example, fiber optic cables are used to connect the ports of different modules within the same or between different chassises. Attenuators, on the other hand, are placed at places through connectors or built-in modules for reducing optical power.</t>
+
+<t><xref target="fig-example-optical-transport"/> illustrates a typical passive infrastructure for optical transport networks.</t>
+
+<figure title="Passive Infrastructure for Optical Transport Networks" anchor="fig-example-optical-transport"><artwork type="ascii-art"><![CDATA[
++--------------+                  +-+                 +--------------+
+| +---+        |<--Cable--->+-----+ +----+<---Cable-->|        +---+ |
+| |  +++       |            |     +-+    |            |       +++  | |
+| |  ++* +---+ |Cable  Cable|    /   \   |Cable  Cable| +---+ *++  | |
+| |NE |\+++  | |Seg. - Seg. |  /      \  |Seg.  -Seg. | |  +++/| NE| |
+| +---+ *++ +++|----| |----+++/        \+++----| |----|+++ ++* +---+ |
+|        |  + +|----| |----+ |----------| +----| |----|+ +  |        |
+|       +++ +++|----| |----+++\        /+++----| |----|+++ +++       |
+| +---+/*++  | |     -      |  \      /  |      -     | |  ++*\+---+ |
+| |  +*+ |ODF| |    Joint   |   \    /   |     Joint  | |ODF| +*+  | |
+| |  +++ +---+ |    Box     |    \  /    |     Box    | +---+ +++  | |
+| |NE |        |            |     *-+    |            |        | NE| |
+| +---+        |            +-----+ +----+            |        +---+ |
+|Central Office|                  +-+                 |Central Office|
++--------------+              Fiber                   +--------------+
+                              Distribution
+                              Box
+
+]]></artwork></figure>
+
+</section>
 </section>
 <section anchor="terminology-and-notations"><name>Terminology and Notations</name>
 
@@ -227,7 +338,7 @@ module: ietf-ni-passive-device
 <section anchor="yang-modules"><name>YANG Modules</name>
 
 <section anchor="yang-data-model-for-passive-device-inventory"><name>YANG Data Model for Passive Device Inventory</name>
-<figure title="YANG model for passive network inventory" anchor="fig-ietf-ns-topo-yang"><artwork><![CDATA[
+<figure title="YANG model for passive network inventory" anchor="fig-ni-passive-yang"><artwork><![CDATA[
    <CODE BEGINS> file "ietf-ni-passive-device@2024-10-21.yang"
 module ietf-ni-passive-device {
   yang-version 1.1;
@@ -790,9 +901,9 @@ module ietf-ni-passive-device {
 
 
 
-<reference anchor='I-D.draft-ietf-ivy-network-inventory-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-03'>
+<reference anchor='I-D.draft-ietf-ivy-network-inventory-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-05'>
    <front>
-      <title>A YANG Data Model for Network Inventory</title>
+      <title>A Base YANG Data Model for Network Inventory</title>
       <author fullname='Chaode Yu' initials='C.' surname='Yu'>
          <organization>Huawei Technologies</organization>
       </author>
@@ -808,17 +919,18 @@ module ietf-ni-passive-device {
       <author fullname='Phil Bedard' initials='P.' surname='Bedard'>
          <organization>Cisco</organization>
       </author>
-      <date day='7' month='July' year='2024'/>
+      <date day='28' month='February' year='2025'/>
       <abstract>
-	 <t>   This document defines a base YANG data model for network inventory
-   that is application- and technology-agnostic.  This data model can be
-   augmented with application-specific and technology-specific details
-   in other, more specific network inventory data models.
+	 <t>   This document defines a base YANG data model for network inventory.
+   The scope of this base model is set to be application- and
+   technology-agnostic.  However, the data model is designed with
+   appropriate provisions to ease future augmentations with application-
+   and technology-specific details.
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-yang-03'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-yang-05'/>
    
 </reference>
 
@@ -855,7 +967,7 @@ module ietf-ni-passive-device {
 </reference>
 
 
-<reference anchor='I-D.draft-ietf-ivy-network-inventory-location' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-location-00'>
+<reference anchor='I-D.draft-ietf-ivy-network-inventory-location' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-location-01'>
    <front>
       <title>A YANG Data Model for Network Inventory Location</title>
       <author fullname='Bo Wu' initials='B.' surname='Wu'>
@@ -873,7 +985,7 @@ module ietf-ni-passive-device {
       <author fullname='Phil Bedard' initials='P.' surname='Bedard'>
          <organization>Cisco</organization>
       </author>
-      <date day='9' month='October' year='2024'/>
+      <date day='17' month='April' year='2025'/>
       <abstract>
 	 <t>   This document defines a YANG data model for Network Inventory
    location (e.g., site, room, rack, geo-location data), which provides
@@ -889,7 +1001,7 @@ module ietf-ni-passive-device {
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-location-00'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-location-01'/>
    
 </reference>
 
@@ -1079,137 +1191,167 @@ module ietf-ni-passive-device {
   </back>
 
 <!-- ##markdown-source:
-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
-DwFViuvVWAAA
+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
+AAA=
 
 -->
 

@@ -168,7 +168,44 @@ author:
 {: #fig-example-optical-access title="Passive Infrastructure for Optical Access Networks"}
 
 ## Passive Infrastructure in Microwave Networks
-TBD
+Microwave access network consists of passive elements connecting the pysical layer of radio access front haul to the transport backhaul, usually this is the connection between a radio unit (RU) to the transmitting antenna. When a microwave access is split mounted, there is a significant presence of passive devices to connect indoor unit (IDU) to outdoor unit (ODU). These are in general a cascade of waveguides or coaxial cables connected to eachother via flanges or couplers. There are two kinds of waveguides, including rigid waveguides and flexible waveguides which are used depending on site conditions and transmitted frequency. If RU is located in the ODU then an intermediate frequency (IF) coaxial cable transfers the signal from IDU to the RU. The microwave access can consist multiple other passive elements such as polarization shifters, attenuators,  ortho-mode couplers and more. The antenna which then propagates the signal can also have different types, namely parabolic, sector other. Antennas have several key attributes such as size, radiation pattern and capabilities including gain and life span.
+
+{{fig-example-microwave}} illustrates a typical passive infrastructure for microwave networks.   
+
+~~~~ ascii-art
+
+                Waveguide       Antenna Atmospheric Polarization
+                                (Gain,  Link        Coupler
++---------+   Cable    Cable     RPE)  (ITU-R P.530) |
+|         |   Seg.  -  Seg.       |      |           |
+|+-------++-+<---->/ \<---->      |      |  Antenna  |      +-------+
+||Carrier||1|------| |-----+      v      v     -     v wave | Radio |
+|+-------++-+      | |     ++  - / \     \    / \  ++  guide| Unit  |
+|         |        | |   +-++-* \| |    \ |   | |+-++-*   +-+-----+ |
+|         |        | |   |OMT | || |   \ ||   | ||OMT |---|1|Carr.| |
+|                  | |   +-++-* /| |    |||   | |+-++-*   +-+-----+ |
+|+-------++-+      | |     ++  - \ /   / ||   \ /  ++   -   +-------+
+||Carrier||3|------| |-----+ / \  -     / |    -  / \  / \
+|+-------++-+      \ /      / - \        /       / - \ | |Antenna
+| Radio   |                 / | \                / | \ \ /
+| Unit    |                / -+- \              / -+- \ -
++---------+                /  |  \              /  |  \
+                          / --+-- \
+                          /   |   \                   \-/ Atmospheric
+                         /    |   \                  \---/Link
+                         / ---+--- \                \-----/
+                        /     |     \
+                           Tower                      -     +-------+
+                                                     / \+-+ | Radio |
+                                              Antenna| ||4+-+ Unit  |
+                                                     \ /+-+ |+-----+|
+                                                      -/ \  ||Carr.||
+                                                      / - \ |+-----+|
+                                                      / | \ +-------+
+                                                     / -+- \
+                                                     /  |  \
+~~~~
+{: #fig-example-microwave title="Passive Infrastructure for Microwave Networks"}
 
 # Terminology and Notations
 

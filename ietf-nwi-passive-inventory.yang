@@ -1,10 +1,10 @@
-module ietf-ni-passive-device {
+module ietf-nwi-passive-inventory {
   yang-version 1.1;
-  namespace "urn:ietf:params:xml:ns:yang:ietf-ni-passive-device";
-  prefix ni-passive;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-nwi-passive-inventory";
+  prefix nwi-passive;
   
   import ietf-network-inventory {
-    prefix ni;
+    prefix nwi;
     reference
     "RFCXXXX: A YANG Data Model for Network Inventory";
     //RFC Editor: replace XXXX with actual RFC number
@@ -145,33 +145,53 @@ module ietf-ni-passive-device {
     description
       "Base identity for cable types.";
   }
-  identity backbone {
+  identity optical-fiber {
     base cable-type;
+    description
+      "Fiber optic cable.";
+  }
+  identity electrical-cable {
+    base cable-type;
+    description
+      "Electrical cable.";
+  }
+  identity coaxial-cable {
+    base electrical-cable;
+    description
+      "Coaxial cable.";
+  }
+
+  identity cable-role {
+    description
+      "Base identity for cable roles.";
+  }
+  identity backbone {
+    base cable-role;
     description
       "Backbone cable.";
   }
   identity aggregation {
-    base cable-type;
+    base cable-role;
     description
       "Aggregation cable.";
   }
   identity access {
-    base cable-type;
+    base cable-role;
     description
       "Access cable.";
   }
   identity trunk {
-    base cable-type;
+    base cable-role;
     description
       "Trunk cable.";
   }
   identity distribution {
-    base cable-type;
+    base cable-role;
     description
       "Distribution cable.";
   }
   identity branch {
-    base cable-type;
+    base cable-role;
     description
       "Branch cable.";
   }
@@ -266,7 +286,7 @@ module ietf-ni-passive-device {
         leaf device-id {
           type string;
           must "derived-from-or-self(../device-type,
-               'ni-passive:passive-device')";
+               'nwi-passive:passive-device')";
           description
             "Connected passive device identifier.";
         }
@@ -274,23 +294,23 @@ module ietf-ni-passive-device {
       case active {
         leaf ne-ref {
           type leafref {
-            path "/ni:network-inventory/ni:network-elements"
-               + "/ni:network-element/ni:ne-id";
+            path "/nwi:network-inventory/nwi:network-elements"
+               + "/nwi:network-element/nwi:ne-id";
           }
           must "derived-from-or-self(../device-type,
-               'ni-passive:active-device')";
+               'nwi-passive:active-device')";
           description
             "Referenced Network Element (NE).";
         }
         leaf component-ref {
           type leafref {
-            path "/ni:network-inventory/ni:network-elements"
-               + "/ni:network-element[ni:ne-id=current()/.."
-               + "/ne-ref]/ni:components/ni:component"
-               + "/ni:component-id";
+            path "/nwi:network-inventory/nwi:network-elements"
+               + "/nwi:network-element[nwi:ne-id=current()/.."
+               + "/ne-ref]/nwi:components/nwi:component"
+               + "/nwi:component-id";
           }
           must "derived-from-or-self(../device-type,
-               'ni-passive:active-device')";
+               'nwi-passive:active-device')";
           description
             "Referenced connected active device's component,
              e.g. port component.";
@@ -316,21 +336,39 @@ module ietf-ni-passive-device {
     } 
   }
 
-  grouping optical-cable-segments {
+  grouping common-cable-attributes {
     description
-      "Attributes applicable to optical fiber cable segments.";
+      "Common attributes of cables applicable to the cable
+       and its child cables.";
 
-    list optical-cable-segment {
-      key "id";
-      min-elements 1;
+    leaf id {
+      type string;
       description
-        "List of optical fiber cable segments.";
-      leaf id {
-        type string;
-        description
-          "Cable segment identifier.";
-      }
-      uses ni:common-entity-attributes;
+        "Cable identifier.";
+    }
+
+    leaf length {
+      type uint32;
+      units "meter";
+      description
+        "Length of the cable in meter.";
+    }
+
+    uses connected-device-ref;
+  }
+  
+  grouping optical-cable-attributes {
+    description
+      "Attributes applicable to fiber optic cables.";
+
+    container optical-cable {
+      when
+        "derived-from-or-self(../cable-type, 'optical-fiber')";
+
+      description
+        "Container for attributes associated with fiber
+         optic cables.";
+
       leaf fiber-core-num {
         type uint32;
         description
@@ -343,12 +381,6 @@ module ietf-ni-passive-device {
         description
           "Type of fiber contained in the cable.";
       }
-      leaf length {
-        type uint32;
-        units "meter";
-        description
-          "Length of the cable in meter.";
-      }
       leaf attenuation {
         type decimal64 {
           fraction-digits 2;
@@ -357,54 +389,68 @@ module ietf-ni-passive-device {
         description
           "The fiber attenuation in dB.";
       }
-      leaf serial-num {
-        type string;
-        description
-          "The serial number of the cable.";
-      }
-      leaf mfg-name {
-        type string;
-        description
-          "The name of the manufacturer of the cable.";
-      }
-      leaf part-number {
-        type string;
-        description
-          "The vendor-specific part number of the cable.";
-      }
-      uses connected-device-ref;
     }
-  }  
+  } 
 
-  grouping optical-cables {
+  grouping cable-attributes {
     description
-      "Attributes applicable to optical fiber cables.";
+      "Attributes of cables.";
 
-    list optical-cable {
+    uses common-cable-attributes;
+    uses nwi:common-entity-attributes;
+
+    leaf cable-type {
+      type identityref {
+        base cable-type;
+      }
+      description
+        "Type of cable.";
+    }
+
+    leaf cable-role {
+      type identityref {
+        base cable-role;
+      }
+      description
+        "Role of cable.";
+    }
+    
+    uses optical-cable-attributes;
+  }
+
+  grouping child-cables {
+    description
+      "Attributes applicable to child cables that are concatnated
+       to form the cable.";
+
+    list child-cable {
+      key "index";
+      min-elements 2;
+      description
+        "Ordered list of concatenated child cables.";
+
+      leaf index {
+        type uint8;
+        description
+          "An index number used to identify the concatenation
+           order of the child cables.";
+      }
+
+      uses common-cable-attributes;
+    }
+  }
+  
+  grouping cables {
+    description
+      "Attributes applicable to cables.";
+
+    list cable {
       key "id";
       description
-        "List of optical fiber cables.";
+        "List of cables.";
 
-      leaf id {
-        type string;
-        description
-          "Cable identifier.";
-      }
-      uses ni:common-entity-attributes;
-      leaf cable-type {
-        type identityref {
-          base cable-type;
-        }
-        description
-          "Type of cable.";
-      }
-      leaf fiber-core-num {
-        type uint32;
-        description
-          "Number of fiber cores within the cable.";
-      }
-      uses connected-device-ref;
-      uses optical-cable-segments;      
+      uses cable-attributes;
+      uses child-cables;    
     }
   }  
 
@@ -422,7 +468,7 @@ module ietf-ni-passive-device {
         description
           "Port identifier.";
       }
-      uses ni:common-entity-attributes;
+      uses nwi:common-entity-attributes;
       leaf port-type {
         type identityref {
           base passive-port-type;
@@ -452,7 +498,7 @@ module ietf-ni-passive-device {
         description
           "Cable identifier.";
       }
-      uses ni:common-entity-attributes;
+      uses nwi:common-entity-attributes;
       leaf device-type {
         type identityref {
           base passive-device-type;
@@ -476,11 +522,11 @@ module ietf-ni-passive-device {
   }  
   
   /* Augmentation */
-  augment "/ni:network-inventory" {
+  augment "/nwi:network-inventory" {
       description
         "Augment network inventory with information
          for optical cables and passive devices.";
-      uses optical-cables;
+      uses cables;
       uses passive-devices;
   }
 }

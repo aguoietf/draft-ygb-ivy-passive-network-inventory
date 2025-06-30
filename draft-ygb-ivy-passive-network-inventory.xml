@@ -106,7 +106,7 @@
       </address>
     </author>
 
-    <date year="2025" month="May" day="07"/>
+    <date year="2025" month="July" day="01"/>
 
     
     <workgroup>IVY Working Group</workgroup>
@@ -145,7 +145,7 @@
 <t><xref target="I-D.draft-ietf-ivy-network-inventory-location"/> emphasizes the relative and geographic location, e.g. equipment room, geo-loation for NE. A passive device is deployed in a certain location visible by the operator, and thus can reference the location defined by <xref target="I-D.draft-ietf-ivy-network-inventory-location"/>.</t>
 
 <t>This document focuses on modeling passive device inventory. The scope of this model is intended to be applicable to a varity types of networks, including but not limited to, IP/MPLS, optical access, optical transport and microwave networks.
-   The methods for discovering these devices are implementation-specific and fall outside the scope of this document.</t>
+   The methods for learning about these devices are implementation-specific and fall outside the scope of this document.</t>
 
 </section>
 <section anchor="examples-of-passive-network-inventory"><name>Examples of Passive Network Inventory</name>
@@ -161,10 +161,10 @@
 <figure title="Passive Infrastructure for Optical Transport Networks" anchor="fig-example-optical-transport"><artwork type="ascii-art"><![CDATA[
                                   Port
 +--------------+                  +-+                 +--------------+
-| +---+        |<--Cable--->+-----+ +----+<--Cable--->|        +---+ |
-| |  +++       |            |     +-+    |            |       +++  | |
-| |  ++* +---+ |Cable  Cable|    /   \   |Cable  Cable| +---+ *++  | |
-| |NE |\+++  | |Seg. - Seg. |  /      \  |Seg. - Seg. | |  +++/| NE| |
+| +---+        |            +-----+ +----+            |        +---+ |
+| |  +++       |<--Cable--->|     +-+    |<--Cable--->|       +++  | |
+| |  ++* +---+ |            |    /   \   |            | +---+ *++  | |
+| |NE |\+++  | |Cable- Cable|  /      \  |Cable- Cable| |  +++/| NE| |
 | +---+ *++ +++|<-->| |<-->+++/        \+++<->| |<--->|+++ ++* +---+ |
 |        |  + +|----| |----+ |----------| +---| |-----|+ +  |        |
 |       +++ +++|----| |----+++\        /+++---| |-----|+++ +++       |
@@ -176,34 +176,35 @@
 |Central Office|                  +-+                 |Central Office|
 +--------------+              Fiber                   +--------------+
                               Distribution
-                              Box
+                              Terminal
 ]]></artwork></figure>
 
 </section>
 <section anchor="passive-infrastructure-in-optical-access-networks"><name>Passive Infrastructure in Optical Access Networks</name>
-<t>Passive infrastructure in optical access networks, often referred to as Optical Distribution Network (ODN), is the physical fiber opticnetwork that connects the Optical Line Terminal (OLT) in the central office to the Optical Network Unit/Terminal (ONU/ONT) at the user's location. ODN uses one or multiple cascaded passive optical splitter to divide the signal from a single OLT into multiple paths to serve multiple users using a single fiber. ODN comprises optical fiber cables, connectors, and many auxiliary components. There are multiple types of fibers, including feeder fibers (connecting the OLT to a fiber distribution point (FDT)), distribution fibers (connecting the distribution point to access points), and drop fibers (connecting access points to ONUs/ONTs). The ODN cabinet acts as a central point where different fiber optic cables and components are hosted, and these ODN cabinets are often located on street corners, utility poles, or other accessible areas along the route to the end users.</t>
+<t>Passive Optical Networks (PONs) are a typical type of optical access network with significant passive infrastructure. The passive infrastructure in PON, often referred to as Optical Distribution Network (ODN), is the physical optical fiber-based network that connects the Optical Line Terminal (OLT) typically hosted in a central office to the Optical Network Unit/Terminal (ONU/ONT) typically deployed at the user's location. The ODN is equipped with one or multiple cascaded passive optical splitter thus creating a physical point-to-multipoint fiber network between an OLT port and the multiple connected ONU/ONTs.</t>
+
+<t>The feeder segment of an ODN refers to the cabling between the OLT and the first splitter, whereas the distribution segment of the ODN comprises the fiber cabling between the first and second splitter stage. The drop segment comprises the drop fibers between the ONT/ONU and the second splitter stage.</t>
+
+<t>The PON ODN hence comprises optical fiber cables and splitters but also many auxiliary components, such as connectors, fiber distribution terminals (FDT), fiber access terminals (FAT), wavelength co-existence elements, etc. The passive components where the optical signals entering or leaving the optical fibers are split/combined or cross-connected are typically hosted in mini cabinets e.g. at street corners, manholes, attached to utility poles, etc.</t>
 
 <t><xref target="fig-example-optical-access"/> illustrates a typical passive infrastructure for optical access networks.</t>
 
 <figure title="Passive Infrastructure for Optical Access Networks" anchor="fig-example-optical-access"><artwork type="ascii-art"><![CDATA[
-                                                          Drop
-                                                          Cable
-                                                          <--->
-                                                       +-+     +-+ONU
-+--------------+                                       | |-----+-+
-| +---+        |<-Feeder Cable->   <-Distr.->            |
-| |  +++       |                     Cable    /|-------| |-----+-+ONU
-| |  ++* +---+ | Cable    Cable              / |       +-+     +-+
-| |NE |\+++  | | Seg.  -  Seg.    /|--------x  |FDT
-| +---+ *++ +++|<---->/ \<---->  / |         \ |       +-+
-| (OLT)  |  + +|------| |------x/  |          \|-------| |-----+-+ONU
-|       +++ +++|------| |------x   | cccccccc          +-+     +-+
-| +---+/*++  | |      \ /       \  | c   /| c         Fiber
-| |  +*+ |ODF| |       -         \ | c  / | c         Access
-| |  +++ +---+ |     Joint        \|-c-x  | c         Point
-| |NE |        |     Box        FDT  c  \ | c                  +-+ONU
-| +---+        |                     c   \|-c------------------+-+
-| (OLT)        |                     c FDT <c---Drop Cable---->
+                                                        
++--------------+                                    <--Drop-->
+| +---+        |<-Feeder Cable->                       Cable
+| |  +++       |                    <--Distr.-->  /|----------+-+ONU
+| |  ++* +---+ | Cable    Cable        Cable     / |          +-+
+| |NE |\+++  | | Seg.  -  Seg.    /|------------x  |FDT
+| +---+ *++ +++|<---->/ \<---->  / |             \ |        
+| (OLT)  |  + +|------| |------x/  |              \|----------+-+ONU
+|       +++ +++|------| |------x   | cccccccc                 +-+
+| +---+/*++  | |      \ /       \  | c   /| c          
+| |  +*+ |ODF| |       -         \ | c  / | c          
+| |  +++ +---+ |     Joint        \|-c-x  | c          
+| |NE |        |     Box        FDT  c  \ | c<---Drop Cable-->+-+ONU
+| +---+        |                     c   \|-c-----------------+-+
+| (OLT)        |                     c FDT <c
 |              |                     c      c
 |Central Office|                     cccccccc
 +--------------+                     Cabinet
@@ -212,42 +213,7 @@
 
 </section>
 <section anchor="passive-infrastructure-in-microwave-networks"><name>Passive Infrastructure in Microwave Networks</name>
-<t>Microwave access network consists of passive elements connecting the pysical layer of radio access front haul to the transport backhaul, usually this is the connection between a radio unit (RU) to the transmitting antenna. When a microwave access is split mounted, there is a significant presence of passive devices to connect indoor unit (IDU) to outdoor unit (ODU). These are in general a cascade of waveguides or coaxial cables connected to eachother via flanges or couplers. There are two kinds of waveguides, including rigid waveguides and flexible waveguides which are used depending on site conditions and transmitted frequency. If RU is located in the ODU then an intermediate frequency (IF) coaxial cable transfers the signal from IDU to the RU. The microwave access can consist multiple other passive elements such as polarization shifters, attenuators,  ortho-mode couplers and more. The antenna which then propagates the signal can also have different types, namely parabolic, sector other. Antennas have several key attributes such as size, radiation pattern and capabilities including gain and life span.</t>
-
-<t><xref target="fig-example-microwave"/> illustrates a typical passive infrastructure for microwave networks.</t>
-
-<figure title="Passive Infrastructure for Microwave Networks" anchor="fig-example-microwave"><artwork type="ascii-art"><![CDATA[
-                Waveguide       Antenna Atmospheric Polarization
-                                (Gain,  Link        Coupler
-+---------+   Cable    Cable     RPE)  (ITU-R P.530) |
-|         |   Seg.  -  Seg.       |      |           |
-|+-------++-+<---->/ \<---->      |      |  Antenna  |      +-------+
-||Carrier||1|------| |-----+      v      v     -     v wave | Radio |
-|+-------++-+      | |     ++  - / \     \    / \  ++  guide| Unit  |
-|         |        | |   +-++-* \| |    \ |   | |+-++-*   +-+-----+ |
-|         |        | |   |OMT | || |   \ ||   | ||OMT |---|1|Carr.| |
-|                  | |   +-++-* /| |    |||   | |+-++-*   +-+-----+ |
-|+-------++-+      | |     ++  - \ /   / ||   \ /  ++   -   +-------+
-||Carrier||3|------| |-----+ / \  -     / |    -  / \  / \
-|+-------++-+      \ /      / - \        /       / - \ | |Antenna
-| Radio   |                 / | \                / | \ \ /
-| Unit    |                / -+- \              / -+- \ -
-+---------+                /  |  \              /  |  \
-                          / --+-- \
-                          /   |   \                   \-/ Atmospheric
-                         /    |   \                  \---/Link
-                         / ---+--- \                \-----/
-                        /     |     \
-                           Tower                      -     +-------+
-                                                     / \+-+ | Radio |
-                                              Antenna| ||4+-+ Unit  |
-                                                     \ /+-+ |+-----+|
-                                                      -/ \  ||Carr.||
-                                                      / - \ |+-----+|
-                                                      / | \ +-------+
-                                                     / -+- \
-                                                     /  |  \
-]]></artwork></figure>
+<t>To be developed.</t>
 
 </section>
 </section>
@@ -282,10 +248,11 @@ appear in all capitals, as shown here.</t>
 <t>The following terms are defined and used in this document.</t>
 
 <t><list style="symbols">
-  <t>Passive device: refers to a physical device within a network that does not require external power to function, and simply manipulates signals through processes like transmission, reflection, splitting, filtering, or attenuation without actively amplifying or generating the signal. Examples include optical fibers, splitters, couplers, and optical filters, all of which are used to direct and manage light signals within a system without needing electricity. A passive device typically does not have management interfaces and is typically deployed in a location tracked by the network operator.</t>
+  <t>Passive device: refers to a physical device within a network that does not require external power to function, and simply manipulates signals through processes like transmission, reflection, splitting, filtering, or attenuation without actively amplifying or generating the signal. Examples include optical fibers, splitters, couplers, and optical filters, all of which are used to direct signals within a system without needing power. A passive device typically does not have management interfaces and is typically deployed in a location tracked by the network operator.</t>
   <t>Active device: refers to a physical device that contains hardware and software and is managable through communication interfaces. Network elements defined by <xref target="I-D.draft-ietf-ivy-network-inventory-yang"/> are examples of active device.</t>
-  <t>Optical Cable: Refers to a wire that uses optical fiber as a medium to transmit optical signals. Optical cable is a concept of a collection, consisting of one or multiple optical cable segments connected by optical cable connectors. The equipment at both ends of the optical cable can be an optical distribution frame, an optical cross-connection box, or an optical splitter box.</t>
-  <t>Optical Cable Segment: refers to a section of optical cable where the number of fiber cores between two optical junctions remains unchanged. Optical cable segments can be spliced or fused through a joint box, connected through an optical distribution frame (ODF), or fiber jumpers. An optical fiber segment contains multiple fiber cores, or strands.</t>
+  <t>Guiding media: refers to physical transmission pathways - such as optical fiber cables, electrical cables, and coaxial cables - that direct and confine electromagnetic signals along a specific route. These media provide a bounded channel for data transmission, ensuring signal integrity, minimizing interference, and enabling high-speed communication over varying distances. This category is also commonly known as guided media or wired transmission media. Guiding media can be concatenated to form longer guiding media.</t>
+  <t>Optical Cable: refers to a type of guiding media that uses optical fiber as media to transmit optical signals. An optical cable can contain one or multiple fiber cores, also known as fiber strands, each serving as an independent guiding media for data transmission. Optical cables can be spliced or fused through joint boxes, optical distribution frames (ODF), or fiber jumpers.</t>
+  <t>Electrical Cable: refers to a type of guiding media that uses metal conductors (such as copper or aluminum wires) as a medium to carry electrical signals for communication or power distribution. Common examples include twisted-pair cables (such as CAT-5/6 and DSL cables), and coaxial cables, which feature a single-core conductor commonly used in DOCSIS and MoCA-based broadband access networks. Electrical cables can be connected through splicing, connectors, or junction boxes.</t>
 </list></t>
 
 </section>
@@ -305,7 +272,7 @@ appear in all capitals, as shown here.</t>
       <ttcol align='left'>Prefix</ttcol>
       <ttcol align='left'>YANG Module</ttcol>
       <ttcol align='left'>Reference</ttcol>
-      <c>ni</c>
+      <c>nwi</c>
       <c>ietf-network-inventory</c>
       <c>RFC XXXX</c>
       <c>nil</c>
@@ -335,22 +302,17 @@ Please remove this note.</t>
 
 <t>The YANG data model in this draft augments the model defined in <xref target="I-D.draft-ietf-ivy-network-inventory-yang"/> with the following information:
    - Passive devices: a list of passive devices with extended attributed reported by the domain controller.
-   - Optical cables: a list of optical cables with each containing a list of cable segments.</t>
+   - Cables: a list of cables with each containing an optional list of child cables.</t>
 
 </section>
 <section anchor="model-tree-diagram"><name>Model Tree Diagram</name>
-<figure title="Tree diagram for passive network inventory" anchor="fig-ni-passive-tree"><artwork><![CDATA[
-module: ietf-ni-passive-device
+<figure title="Tree diagram for passive network inventory" anchor="fig-nwi-passive-tree"><artwork><![CDATA[
+module: ietf-nwi-passive-inventory
 
-  augment /ni:network-inventory:
-    +--rw optical-cable* [id]
-    |  +--rw id                       string
-    |  +--ro uuid?                    yang:uuid
-    |  +--rw name?                    string
-    |  +--rw description?             string
-    |  +--rw alias?                   string
-    |  +--rw cable-type?              identityref
-    |  +--rw fiber-core-num?          uint32
+  augment /nwi:network-inventory:
+    +--rw cable* [id]
+    |  +--rw id               string
+    |  +--rw length?          uint32
     |  +--rw a-end
     |  |  +--rw device-type?           identityref
     |  |  +--rw (connected-device-type)?
@@ -367,19 +329,20 @@ module: ietf-ni-passive-device
     |  |     +--:(active)
     |  |        +--rw ne-ref?          leafref
     |  |        +--rw component-ref?   leafref
-    |  +--rw optical-cable-segment* [id]
-    |     +--rw id                string
-    |     +--ro uuid?             yang:uuid
-    |     +--rw name?             string
-    |     +--rw description?      string
-    |     +--rw alias?            string
-    |     +--rw fiber-core-num?   uint32
-    |     +--rw fiber-type?       identityref
-    |     +--rw length?           uint32
-    |     +--rw attenuation?      decimal64
-    |     +--rw serial-num?       string
-    |     +--rw mfg-name?         string
-    |     +--rw part-number?      string
+    |  +--ro uuid?            yang:uuid
+    |  +--rw name?            string
+    |  +--rw description?     string
+    |  +--rw alias?           string
+    |  +--rw cable-type?      identityref
+    |  +--rw cable-role?      identityref
+    |  +--rw optical-cable
+    |  |  +--rw fiber-core-num?   uint32
+    |  |  +--rw fiber-type?       identityref
+    |  |  +--rw attenuation?      decimal64
+    |  +--rw child-cable* [index]
+    |     +--rw index     uint8
+    |     +--rw id?       string
+    |     +--rw length?   uint32
     |     +--rw a-end
     |     |  +--rw device-type?           identityref
     |     |  +--rw (connected-device-type)?
@@ -419,15 +382,15 @@ module: ietf-ni-passive-device
 <section anchor="yang-modules"><name>YANG Modules</name>
 
 <section anchor="yang-data-model-for-passive-device-inventory"><name>YANG Data Model for Passive Device Inventory</name>
-<figure title="YANG model for passive network inventory" anchor="fig-ni-passive-yang"><artwork><![CDATA[
-   <CODE BEGINS> file "ietf-ni-passive-device@2024-10-21.yang"
-module ietf-ni-passive-device {
+<figure title="YANG model for passive network inventory" anchor="fig-nwi-passive-yang"><artwork><![CDATA[
+   <CODE BEGINS> file "ietf-nwi-passive-inventory@2025-06-30.yang"
+module ietf-nwi-passive-inventory {
   yang-version 1.1;
-  namespace "urn:ietf:params:xml:ns:yang:ietf-ni-passive-device";
-  prefix ni-passive;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-nwi-passive-inventory";
+  prefix nwi-passive;
   
   import ietf-network-inventory {
-    prefix ni;
+    prefix nwi;
     reference
     "RFCXXXX: A YANG Data Model for Network Inventory";
     //RFC Editor: replace XXXX with actual RFC number
@@ -568,33 +531,53 @@ module ietf-ni-passive-device {
     description
       "Base identity for cable types.";
   }
-  identity backbone {
+  identity optical-fiber {
     base cable-type;
+    description
+      "Fiber optic cable.";
+  }
+  identity electrical-cable {
+    base cable-type;
+    description
+      "Electrical cable.";
+  }
+  identity coaxial-cable {
+    base electrical-cable;
+    description
+      "Coaxial cable.";
+  }
+
+  identity cable-role {
+    description
+      "Base identity for cable roles.";
+  }
+  identity backbone {
+    base cable-role;
     description
       "Backbone cable.";
   }
   identity aggregation {
-    base cable-type;
+    base cable-role;
     description
       "Aggregation cable.";
   }
   identity access {
-    base cable-type;
+    base cable-role;
     description
       "Access cable.";
   }
   identity trunk {
-    base cable-type;
+    base cable-role;
     description
       "Trunk cable.";
   }
   identity distribution {
-    base cable-type;
+    base cable-role;
     description
       "Distribution cable.";
   }
   identity branch {
-    base cable-type;
+    base cable-role;
     description
       "Branch cable.";
   }
@@ -689,7 +672,7 @@ module ietf-ni-passive-device {
         leaf device-id {
           type string;
           must "derived-from-or-self(../device-type,
-               'ni-passive:passive-device')";
+               'nwi-passive:passive-device')";
           description
             "Connected passive device identifier.";
         }
@@ -697,23 +680,23 @@ module ietf-ni-passive-device {
       case active {
         leaf ne-ref {
           type leafref {
-            path "/ni:network-inventory/ni:network-elements"
-               + "/ni:network-element/ni:ne-id";
+            path "/nwi:network-inventory/nwi:network-elements"
+               + "/nwi:network-element/nwi:ne-id";
           }
           must "derived-from-or-self(../device-type,
-               'ni-passive:active-device')";
+               'nwi-passive:active-device')";
           description
             "Referenced Network Element (NE).";
         }
         leaf component-ref {
           type leafref {
-            path "/ni:network-inventory/ni:network-elements"
-               + "/ni:network-element[ni:ne-id=current()/.."
-               + "/ne-ref]/ni:components/ni:component"
-               + "/ni:component-id";
+            path "/nwi:network-inventory/nwi:network-elements"
+               + "/nwi:network-element[nwi:ne-id=current()/.."
+               + "/ne-ref]/nwi:components/nwi:component"
+               + "/nwi:component-id";
           }
           must "derived-from-or-self(../device-type,
-               'ni-passive:active-device')";
+               'nwi-passive:active-device')";
           description
             "Referenced connected active device's component,
              e.g. port component.";
@@ -739,21 +722,39 @@ module ietf-ni-passive-device {
     } 
   }
 
-  grouping optical-cable-segments {
+  grouping common-cable-attributes {
     description
-      "Attributes applicable to optical fiber cable segments.";
+      "Common attributes of cables applicable to the cable
+       and its child cables.";
 
-    list optical-cable-segment {
-      key "id";
-      min-elements 1;
+    leaf id {
+      type string;
       description
-        "List of optical fiber cable segments.";
-      leaf id {
-        type string;
-        description
-          "Cable segment identifier.";
-      }
-      uses ni:common-entity-attributes;
+        "Cable identifier.";
+    }
+
+    leaf length {
+      type uint32;
+      units "meter";
+      description
+        "Length of the cable in meter.";
+    }
+
+    uses connected-device-ref;
+  }
+  
+  grouping optical-cable-attributes {
+    description
+      "Attributes applicable to fiber optic cables.";
+
+    container optical-cable {
+      when
+        "derived-from-or-self(../cable-type, 'optical-fiber')";
+
+      description
+        "Container for attributes associated with fiber
+         optic cables.";
+
       leaf fiber-core-num {
         type uint32;
         description
@@ -766,12 +767,6 @@ module ietf-ni-passive-device {
         description
           "Type of fiber contained in the cable.";
       }
-      leaf length {
-        type uint32;
-        units "meter";
-        description
-          "Length of the cable in meter.";
-      }
       leaf attenuation {
         type decimal64 {
           fraction-digits 2;
@@ -780,54 +775,68 @@ module ietf-ni-passive-device {
         description
           "The fiber attenuation in dB.";
       }
-      leaf serial-num {
-        type string;
-        description
-          "The serial number of the cable.";
-      }
-      leaf mfg-name {
-        type string;
-        description
-          "The name of the manufacturer of the cable.";
-      }
-      leaf part-number {
-        type string;
-        description
-          "The vendor-specific part number of the cable.";
-      }
-      uses connected-device-ref;
     }
-  }  
+  } 
 
-  grouping optical-cables {
+  grouping cable-attributes {
     description
-      "Attributes applicable to optical fiber cables.";
+      "Attributes of cables.";
 
-    list optical-cable {
+    uses common-cable-attributes;
+    uses nwi:common-entity-attributes;
+
+    leaf cable-type {
+      type identityref {
+        base cable-type;
+      }
+      description
+        "Type of cable.";
+    }
+
+    leaf cable-role {
+      type identityref {
+        base cable-role;
+      }
+      description
+        "Role of cable.";
+    }
+    
+    uses optical-cable-attributes;
+  }
+
+  grouping child-cables {
+    description
+      "Attributes applicable to child cables that are concatnated
+       to form the cable.";
+
+    list child-cable {
+      key "index";
+      min-elements 2;
+      description
+        "Ordered list of concatenated child cables.";
+
+      leaf index {
+        type uint8;
+        description
+          "An index number used to identify the concatenation
+           order of the child cables.";
+      }
+
+      uses common-cable-attributes;
+    }
+  }
+  
+  grouping cables {
+    description
+      "Attributes applicable to cables.";
+
+    list cable {
       key "id";
       description
-        "List of optical fiber cables.";
+        "List of cables.";
 
-      leaf id {
-        type string;
-        description
-          "Cable identifier.";
-      }
-      uses ni:common-entity-attributes;
-      leaf cable-type {
-        type identityref {
-          base cable-type;
-        }
-        description
-          "Type of cable.";
-      }
-      leaf fiber-core-num {
-        type uint32;
-        description
-          "Number of fiber cores within the cable.";
-      }
-      uses connected-device-ref;
-      uses optical-cable-segments;      
+      uses cable-attributes;
+      uses child-cables;    
     }
   }  
 
@@ -845,7 +854,7 @@ module ietf-ni-passive-device {
         description
           "Port identifier.";
       }
-      uses ni:common-entity-attributes;
+      uses nwi:common-entity-attributes;
       leaf port-type {
         type identityref {
           base passive-port-type;
@@ -875,7 +884,7 @@ module ietf-ni-passive-device {
         description
           "Cable identifier.";
       }
-      uses ni:common-entity-attributes;
+      uses nwi:common-entity-attributes;
       leaf device-type {
         type identityref {
           base passive-device-type;
@@ -899,11 +908,11 @@ module ietf-ni-passive-device {
   }  
   
   /* Augmentation */
-  augment "/ni:network-inventory" {
+  augment "/nwi:network-inventory" {
       description
         "Augment network inventory with information
          for optical cables and passive devices.";
-      uses optical-cables;
+      uses cables;
       uses passive-devices;
   }
 }
@@ -955,7 +964,7 @@ module ietf-ni-passive-device {
    Registry" <xref target="RFC3688"/> as follows:</t>
 
 <figure><artwork><![CDATA[
-   URI: urn:ietf:params:xml:ns:yang:ietf-ni-passive-device
+   URI: urn:ietf:params:xml:ns:yang:ietf-nwi-passive-inventory
    Registrant Contact: The IESG
    XML: N/A; the requested URI is an XML namespace.
 ]]></artwork></figure>
@@ -964,9 +973,9 @@ module ietf-ni-passive-device {
    registry <xref target="RFC6020"/>.</t>
 
 <figure><artwork><![CDATA[
-   name: ietf-ni-passive-device
-   namespace: urn:ietf:params:xml:ns:yang:ietf-ni-passive-device
-   prefix: ni-passive
+   name: ietf-nwi-passive-inventory
+   namespace: urn:ietf:params:xml:ns:yang:ietf-nwi-passive-inventory
+   prefix: nwi-passive
    reference: RFC XXXX
 ]]></artwork></figure>
 
@@ -982,7 +991,7 @@ module ietf-ni-passive-device {
 
 
 
-<reference anchor='I-D.draft-ietf-ivy-network-inventory-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-05'>
+<reference anchor='I-D.draft-ietf-ivy-network-inventory-yang' target='https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-06'>
    <front>
       <title>A Base YANG Data Model for Network Inventory</title>
       <author fullname='Chaode Yu' initials='C.' surname='Yu'>
@@ -1000,18 +1009,17 @@ module ietf-ni-passive-device {
       <author fullname='Phil Bedard' initials='P.' surname='Bedard'>
          <organization>Cisco</organization>
       </author>
-      <date day='28' month='February' year='2025'/>
+      <date day='21' month='May' year='2025'/>
       <abstract>
 	 <t>   This document defines a base YANG data model for network inventory.
    The scope of this base model is set to be application- and
-   technology-agnostic.  However, the data model is designed with
-   appropriate provisions to ease future augmentations with application-
-   and technology-specific details.
+   technology-agnostic.  The base data model can be augmented with
+   application- and technology-specific details.
 
 	 </t>
       </abstract>
    </front>
-   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-yang-05'/>
+   <seriesInfo name='Internet-Draft' value='draft-ietf-ivy-network-inventory-yang-06'/>
    
 </reference>
 
@@ -1272,201 +1280,195 @@ module ietf-ni-passive-device {
   </back>
 
 <!-- ##markdown-source:
-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
-MRS36csUAPkObp124tTBoM2W6/atlvSsSvR7Wq4PDKqq9nR700bR1nRq/qFp
-Xv3oWR0GTF0L0uea3IgHKhG8xgJeAW22Xy1rVl4IOrlJbLamXNkPdfR0s86J
-nWplVY4fgRgqzPj81XlfGXoeynqTteqb8MexdeBmG9sVaytLxf9aDv9Nc/gP
-4yLFXfFb233Xba9MCvF3BFIe7lS568JZtvffXpKluahsj3ialUKr4ScHgxw+
-U6K7x33Gf7Tv0W3/S+l/if3PjPHXEfSUk2GWW9R9KqLMiIkTmibR3o+2EUsb
-9RrG31Zj/OuXYWwytDUrLFuDpS3HyZXZqmZopWTWNpSm2Rib37SUHzwE01PF
-7qtlzDmrJdZ2kcLFyb5Uhq3WQau9K2we2lBbh5DPtky4a89jaAt5D055IEaF
-nmr+QZ02zkVYSdtF64YW60xha0ZsU2pRUPEmlno+HaEfG24nodrt0WSWi1cr
-yVR+9woG4bk4mdic47dzNlfy7Yxh6gVA3nUVCardQYa977BGi8nwqzBrQuee
-gx74wRRp22tjlyLbP1hNM20L5W1lFilAtX/QQXKZX7im6tP5/ATE2jq1Sl46
-WfELcFJ1hQqmyMXEo5XgB6G3UiC/gAJwInwcafVR/bQi+SAetBtm6Emlfw8D
-Xrdl/koWeZkl7rTAj7W1JZKvY2S/mnFtBJUNPUtNWz3SaONfadpWm9p/kbFf
-oZGisnO15h684hKdqluLBfBB949X4No8jcBUFdiOFq6nv+oQfvomQAUdceyr
-aPEVpX59LSWuB6sNNUt1uCOsalOxUpXtiPe/VKPbCFithl+ugR3KVwnDPlb9
-OhD8m1nOthjTY9SuJR62huLVw1K26jkkEitpel3GEQT6WhVCUVHx65PTo574
-0zVlhZkvrVn10PvyxjPe00kJK0toreRt1+lsyeFeSbQ1KzepperrZSuZR3rQ
-ZrCrnonOF9nnLYOMg2KzehNhe8Blc8UMWlVu5EdzxouVylK21z482jpGu6Ur
-WS2selOvuhufcRz6s5VQfXxxdPPzkgxwzDPVGeA6Z62abdmW/y34XMFvVMIj
-n3e4aNm0CwWHB0dqc++NHBdpdzm93baWB9qyQZ832dJhpKC3c4+/WMWHzwjz
-mUQQmtmqPNJHWcItHgeq22SdL2K+4kYJpbzLPhMXx8PDy4uT6rk4gO36+MZ+
-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
+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
+NNz4HwnrBm1FeQAA
 
 -->
 

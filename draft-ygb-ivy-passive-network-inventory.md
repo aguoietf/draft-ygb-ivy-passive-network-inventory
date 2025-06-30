@@ -4,7 +4,7 @@ coding: utf-8
 title: A YANG Data Model for Passive Network Inventory
 
 abbrev: Passive Network Inventory YANG Model
-docname: draft-ygb-ivy-passive-network-inventory-00
+docname: draft-ygb-ivy-passive-network-inventory-01
 workgroup: IVY Working Group
 category: std
 ipr: trust200902
@@ -25,26 +25,187 @@ author:
     name: Italo Busi
     org: Huawei
     email: italo.busi@huawei.com
+  -
+    name: Mohammad Boroon
+    org: Highstreet
+    email: mohammad.boroon@highstreet-technologies.com
+  -
+    name: Sergio Belotti
+    org: Nokia
+    email: sergio.belotti@nokia.com
+  -
+    name: Tom Van Caenegem
+    org: Nokia
+    email: tom.van_caenegem@nokia.com
+  -
+    name: Swaminathan 1. S.
+    org: Nokia
+    email: swaminathan.1.s@nokia.com
+  -
+    name: Swaminathan B.
+    org: Nokia
+    email: swaminathan.b@nokia.com
+  -
+    name: Nigel Davis
+    org: Ciena
+    email: ndavis@ciena.com
+  -
+    name: Mauro Tilocca
+    org: FiberCop
+    email: mauro.tilocca@fibercop.it
+  -
+    name: Brad Peters
+    org: NBN
+    email: bradpeters@nbnco.com.au
+  -
+    name: Bin Yu Yun
+    org: ETRI
+    email: byyun@etri.re.kr
+  -
+    name: Yucong Liu
+    org: China Mobile
+    email: liuyucongyjy@chinamobile.com
+  -
+    name: Yang Zhao
+    org: China Mobile
+    email: zhaoyangyjy@chinamobile.com
+  -
+    name: Avinash Sakalabhaktula
+    org: Radisys
+    email: Avinash.Sakalabhaktula@radisys.com
+
+
+
 
 --- abstract
 
-   This document presents a YANG data model for passive device inventory information.
-   The model enhances the base model outlined in {{!I-D.draft-ietf-ivy-network-inventory-yang}}
+   This document presents a YANG data model for tracking and managing passive network
+   inventory. The model enhances the base model outlined in {{!I-D.draft-ietf-ivy-network-inventory-yang}}
    and is intended for use in the northbound interface of a domain controller as defined in
-   {{!RFC8453}}.
+   {{!RFC8453}}. 
  
 --- middle
 
 # Introduction
 
-   Passive devices typically include fiber, cable, optical splitters, and some passive sites. As a crucial part of communication networks, the inventory information for these devices is also essentialfor inventory management.
+   Passive infrastructure refers to the underlying infrastructure of a telecommunication network that is 
+   not actively detectable or managable. It typically includes non-powered, non-communicating devices and components,
+   such as cabinets, cables, connectors, splitters, antennas, distribution frames, etc., that are either hosted 
+   within an actively managed device or deployed along the physical pathway between active devices.
+   Passive infrastructure serves as physical connections between active network devices, forming the 
+   backbone for network topology. As a crucial part of communication networks,the inventory information
+   for these devices is also essential for inventory management.
    
    {{!I-D.draft-ietf-ivy-network-inventory-yang}} incorporates the component concept from {{!RFC8348}} to detail the equipment and holder information of a NE. This encompasses chassis, slot/sub-slot, board/sub-board, port, and transceiver. As these items are recognized by the NE through internal protocols, the passive devices that cannot be discovered by the NE are thus not included in the modeling and needs to be addressed.
 
    {{!I-D.draft-ietf-ivy-network-inventory-location}} emphasizes the relative and geographic location, e.g. equipment room, geo-loation for NE. A passive device is deployed in a certain location visible by the operator, and thus can reference the location defined by {{!I-D.draft-ietf-ivy-network-inventory-location}}.
    
-   This document focuses on modeling passive device inventory. The methods for discovering these devices 
-   are implementation-specific and fall outside the scope of this document.
+   This document focuses on modeling passive device inventory. The scope of this model is intended to be applicable to a varity types of networks, including but not limited to, IP/MPLS, optical access, optical transport and microwave networks.
+   The methods for discovering these devices are implementation-specific and fall outside the scope of this document.
+   
+# Examples of Passive Network Inventory
+   Network segments built on different technologies share many common passive infrastructure components across the system. To explore the practical applications of these components, we can examine example scenarios for optical access networks, optical transport systems, and microwave networks. 
+   
+## Passive Infrastructure in Optical Transport Networks
+   Passive infrastructure in optical transport networks serves as the backbone for high-capacity data transmission. Key components include fiber optic cables, which act as the primary medium of long distance transmission. Optical connectors, patch panels, and splice enclosures are crucial for joining and managing fiber links. Couplers and splitters are used for signal distribution and combining. 
+   
+   Within a phyical network element (NE) there are also presence of passive components. For example, fiber optic cables are used to connect the ports of different modules within the same or between different chassises. Attenuators, on the other hand, are placed at places through connectors or built-in modules for reducing optical power.
+   
+   {{fig-example-optical-transport}} illustrates a typical passive infrastructure for a point-to-point optical transport network.   
+
+~~~~ ascii-art
+                                  Port
++--------------+                  +-+                 +--------------+
+| +---+        |<--Cable--->+-----+ +----+<--Cable--->|        +---+ |
+| |  +++       |            |     +-+    |            |       +++  | |
+| |  ++* +---+ |Cable  Cable|    /   \   |Cable  Cable| +---+ *++  | |
+| |NE |\+++  | |Seg. - Seg. |  /      \  |Seg. - Seg. | |  +++/| NE| |
+| +---+ *++ +++|<-->| |<-->+++/        \+++<->| |<--->|+++ ++* +---+ |
+|        |  + +|----| |----+ |----------| +---| |-----|+ +  |        |
+|       +++ +++|----| |----+++\        /+++---| |-----|+++ +++       |
+| +---+/*++  | |     -      |  \      /  |     -      | |  ++*\+---+ |
+| |  +*+ |ODF| |    Joint   |   \    /   |    Joint   | |ODF| +*+  | |
+| |  +++ +---+ |    Box     |    \  /    |    Box     | +---+ +++  | |
+| |NE |        |            |     *-+    |            |        | NE| |
+| +---+        |            +-----+ +----+            |        +---+ |
+|Central Office|                  +-+                 |Central Office|
++--------------+              Fiber                   +--------------+
+                              Distribution
+                              Box
+~~~~
+{: #fig-example-optical-transport title="Passive Infrastructure for Optical Transport Networks"}
+
+## Passive Infrastructure in Optical Access Networks
+   Passive infrastructure in optical access networks, often referred to as Optical Distribution Network (ODN), is the physical fiber opticnetwork that connects the Optical Line Terminal (OLT) in the central office to the Optical Network Unit/Terminal (ONU/ONT) at the user's location. ODN uses one or multiple cascaded passive optical splitter to divide the signal from a single OLT into multiple paths to serve multiple users using a single fiber. ODN comprises optical fiber cables, connectors, and many auxiliary components. There are multiple types of fibers, including feeder fibers (connecting the OLT to a fiber distribution point (FDT)), distribution fibers (connecting the distribution point to access points), and drop fibers (connecting access points to ONUs/ONTs). The ODN cabinet acts as a central point where different fiber optic cables and components are hosted, and these ODN cabinets are often located on street corners, utility poles, or other accessible areas along the route to the end users.
+   
+   {{fig-example-optical-access}} illustrates a typical passive infrastructure for optical access networks.   
+
+~~~~ ascii-art
+
+                                                          Drop
+                                                          Cable
+                                                          <--->
+                                                       +-+     +-+ONU
++--------------+                                       | |-----+-+
+| +---+        |<-Feeder Cable->   <-Distr.->            |
+| |  +++       |                     Cable    /|-------| |-----+-+ONU
+| |  ++* +---+ | Cable    Cable              / |       +-+     +-+
+| |NE |\+++  | | Seg.  -  Seg.    /|--------x  |FDT
+| +---+ *++ +++|<---->/ \<---->  / |         \ |       +-+
+| (OLT)  |  + +|------| |------x/  |          \|-------| |-----+-+ONU
+|       +++ +++|------| |------x   | cccccccc          +-+     +-+
+| +---+/*++  | |      \ /       \  | c   /| c         Fiber
+| |  +*+ |ODF| |       -         \ | c  / | c         Access
+| |  +++ +---+ |     Joint        \|-c-x  | c         Point
+| |NE |        |     Box        FDT  c  \ | c                  +-+ONU
+| +---+        |                     c   \|-c------------------+-+
+| (OLT)        |                     c FDT <c---Drop Cable---->
+|              |                     c      c
+|Central Office|                     cccccccc
++--------------+                     Cabinet
+
+~~~~
+{: #fig-example-optical-access title="Passive Infrastructure for Optical Access Networks"}
+
+## Passive Infrastructure in Microwave Networks
+Microwave access network consists of passive elements connecting the pysical layer of radio access front haul to the transport backhaul, usually this is the connection between a radio unit (RU) to the transmitting antenna. When a microwave access is split mounted, there is a significant presence of passive devices to connect indoor unit (IDU) to outdoor unit (ODU). These are in general a cascade of waveguides or coaxial cables connected to eachother via flanges or couplers. There are two kinds of waveguides, including rigid waveguides and flexible waveguides which are used depending on site conditions and transmitted frequency. If RU is located in the ODU then an intermediate frequency (IF) coaxial cable transfers the signal from IDU to the RU. The microwave access can consist multiple other passive elements such as polarization shifters, attenuators,  ortho-mode couplers and more. The antenna which then propagates the signal can also have different types, namely parabolic, sector other. Antennas have several key attributes such as size, radiation pattern and capabilities including gain and life span.
+
+{{fig-example-microwave}} illustrates a typical passive infrastructure for microwave networks.   
+
+~~~~ ascii-art
+
+                Waveguide       Antenna Atmospheric Polarization
+                                (Gain,  Link        Coupler
++---------+   Cable    Cable     RPE)  (ITU-R P.530) |
+|         |   Seg.  -  Seg.       |      |           |
+|+-------++-+<---->/ \<---->      |      |  Antenna  |      +-------+
+||Carrier||1|------| |-----+      v      v     -     v wave | Radio |
+|+-------++-+      | |     ++  - / \     \    / \  ++  guide| Unit  |
+|         |        | |   +-++-* \| |    \ |   | |+-++-*   +-+-----+ |
+|         |        | |   |OMT | || |   \ ||   | ||OMT |---|1|Carr.| |
+|                  | |   +-++-* /| |    |||   | |+-++-*   +-+-----+ |
+|+-------++-+      | |     ++  - \ /   / ||   \ /  ++   -   +-------+
+||Carrier||3|------| |-----+ / \  -     / |    -  / \  / \
+|+-------++-+      \ /      / - \        /       / - \ | |Antenna
+| Radio   |                 / | \                / | \ \ /
+| Unit    |                / -+- \              / -+- \ -
++---------+                /  |  \              /  |  \
+                          / --+-- \
+                          /   |   \                   \-/ Atmospheric
+                         /    |   \                  \---/Link
+                         / ---+--- \                \-----/
+                        /     |     \
+                           Tower                      -     +-------+
+                                                     / \+-+ | Radio |
+                                              Antenna| ||4+-+ Unit  |
+                                                     \ /+-+ |+-----+|
+                                                      -/ \  ||Carr.||
+                                                      / - \ |+-----+|
+                                                      / | \ +-------+
+                                                     / -+- \
+                                                     /  |  \
+~~~~
+{: #fig-example-microwave title="Passive Infrastructure for Microwave Networks"}
 
 # Terminology and Notations
 
@@ -94,6 +255,14 @@ Please replace XXXX with the RFC number assigned to {{!I-D.draft-ietf-ivy-networ
 Please replace YYYY with the RFC number assigned to {{!I-D.draft-ietf-ivy-network-inventory-location}}.
 Please remove this note.
 
+# Modeling Considerations
+
+## Relationship with Network Inventory
+TBD
+
+## Relationship with Topology
+TBD
+
 # YANG Model Overview
 
    The YANG data model in this draft augments the model defined in {{!I-D.draft-ietf-ivy-network-inventory-yang}} with the following information:
@@ -114,7 +283,7 @@ Please remove this note.
 {::include ./ietf-ni-passive-device.yang}
    <CODE ENDS>
 ~~~~
-{: #fig-ietf-ns-topo-yang title="YANG model for passive network inventory"}   
+{: #fig-ni-passive-yang title="YANG model for passive network inventory"}   
 
 # Manageability Considerations
 

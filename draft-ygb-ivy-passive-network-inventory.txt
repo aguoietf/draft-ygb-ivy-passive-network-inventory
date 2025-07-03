@@ -5,7 +5,7 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                                  A. Guo
-Expires: 2 January 2026                                        Futurewei
+Expires: 5 January 2026                                        Futurewei
                                                                  I. Busi
                                                                   Huawei
                                                                M. Boroon
@@ -28,7 +28,7 @@ Expires: 2 January 2026                                        Futurewei
                                                             China Mobile
                                                        A. Sakalabhaktula
                                                                  Radisys
-                                                             1 July 2025
+                                                             4 July 2025
 
 
             A YANG Data Model for Passive Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 1]
+Yu, et al.               Expires 5 January 2026                 [Page 1]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -68,7 +68,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2026.
+   This Internet-Draft will expire on 5 January 2026.
 
 Copyright Notice
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 2]
+Yu, et al.               Expires 5 January 2026                 [Page 2]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -165,7 +165,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 3]
+Yu, et al.               Expires 5 January 2026                 [Page 3]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -221,7 +221,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 4]
+Yu, et al.               Expires 5 January 2026                 [Page 4]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -257,10 +257,10 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
    access networks.
 
    +--------------+                                    <--Drop-->
-   | +---+        |<-Feeder Cable->                       Cable
-   | |  +++       |                    <--Distr.-->  /|----------+-+ONU
-   | |  ++* +---+ | Cable    Cable        Cable     / |          +-+
-   | |NE |\+++  | | Seg.  -  Seg.    /|------------x  |FDT
+   | +---+        |                                       Cable
+   | |  +++       |<-Feeder Cable->    <--Distr.-->  /|----------+-+ONU
+   | |  ++* +---+ |                       Cable     / |          +-+
+   | |NE |\+++  | | Cable -  Cable   /|------------x  |FDT
    | +---+ *++ +++|<---->/ \<---->  / |             \ |
    | (OLT)  |  + +|------| |------x/  |              \|----------+-+ONU
    |       +++ +++|------| |------x   | cccccccc                 +-+
@@ -277,7 +277,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 5]
+Yu, et al.               Expires 5 January 2026                 [Page 5]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -333,7 +333,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 6]
+Yu, et al.               Expires 5 January 2026                 [Page 6]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -389,7 +389,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 7]
+Yu, et al.               Expires 5 January 2026                 [Page 7]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -445,7 +445,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 8]
+Yu, et al.               Expires 5 January 2026                 [Page 8]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -501,7 +501,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                 [Page 9]
+Yu, et al.               Expires 5 January 2026                 [Page 9]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -557,7 +557,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 10]
+Yu, et al.               Expires 5 January 2026                [Page 10]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -613,7 +613,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 11]
+Yu, et al.               Expires 5 January 2026                [Page 11]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -669,7 +669,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 12]
+Yu, et al.               Expires 5 January 2026                [Page 12]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -725,7 +725,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 13]
+Yu, et al.               Expires 5 January 2026                [Page 13]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -781,7 +781,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 14]
+Yu, et al.               Expires 5 January 2026                [Page 14]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -837,7 +837,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 15]
+Yu, et al.               Expires 5 January 2026                [Page 15]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -893,7 +893,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 16]
+Yu, et al.               Expires 5 January 2026                [Page 16]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -949,7 +949,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 17]
+Yu, et al.               Expires 5 January 2026                [Page 17]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1005,7 +1005,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 18]
+Yu, et al.               Expires 5 January 2026                [Page 18]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1061,7 +1061,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 19]
+Yu, et al.               Expires 5 January 2026                [Page 19]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1117,7 +1117,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 20]
+Yu, et al.               Expires 5 January 2026                [Page 20]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1173,7 +1173,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 21]
+Yu, et al.               Expires 5 January 2026                [Page 21]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1229,7 +1229,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 22]
+Yu, et al.               Expires 5 January 2026                [Page 22]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1285,7 +1285,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 23]
+Yu, et al.               Expires 5 January 2026                [Page 23]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1341,7 +1341,7 @@ Authors' Addresses
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 24]
+Yu, et al.               Expires 5 January 2026                [Page 24]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1397,7 +1397,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 25]
+Yu, et al.               Expires 5 January 2026                [Page 25]
 
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
@@ -1453,4 +1453,4 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
 
-Yu, et al.               Expires 2 January 2026                [Page 26]
+Yu, et al.               Expires 5 January 2026                [Page 26]

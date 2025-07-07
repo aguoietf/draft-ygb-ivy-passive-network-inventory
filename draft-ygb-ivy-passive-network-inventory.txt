@@ -997,7 +997,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
          "Attributes of cables.";
 
        uses common-cable-attributes;
-       uses nwi:common-entity-attributes;
+       uses nwi:basic-common-entity-attributes;
 
        leaf cable-type {
          type identityref {
@@ -1084,7 +1084,7 @@ Internet-Draft    Passive Network Inventory YANG Model         July 2025
            description
              "Port identifier.";
          }
-         uses nwi:common-entity-attributes;
+         uses nwi:basic-common-entity-attributes;
          leaf port-type {
            type identityref {
              base passive-port-type;
@@ -1122,7 +1122,7 @@ Yu, et al.               Expires 9 January 2026                [Page 20]
 Internet-Draft    Passive Network Inventory YANG Model         July 2025
 
 
-         uses nwi:common-entity-attributes;
+         uses nwi:basic-common-entity-attributes;
          leaf device-type {
            type identityref {
              base passive-device-type;

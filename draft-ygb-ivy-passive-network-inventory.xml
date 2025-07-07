@@ -783,7 +783,7 @@ module ietf-nwi-passive-inventory {
       "Attributes of cables.";
 
     uses common-cable-attributes;
-    uses nwi:common-entity-attributes;
+    uses nwi:basic-common-entity-attributes;
 
     leaf cable-type {
       type identityref {
@@ -854,7 +854,7 @@ module ietf-nwi-passive-inventory {
         description
           "Port identifier.";
       }
-      uses nwi:common-entity-attributes;
+      uses nwi:basic-common-entity-attributes;
       leaf port-type {
         type identityref {
           base passive-port-type;
@@ -884,7 +884,7 @@ module ietf-nwi-passive-inventory {
         description
           "Cable identifier.";
       }
-      uses nwi:common-entity-attributes;
+      uses nwi:basic-common-entity-attributes;
       leaf device-type {
         type identityref {
           base passive-device-type;
@@ -1280,7 +1280,7 @@ module ietf-nwi-passive-inventory {
   </back>
 
 <!-- ##markdown-source:
-H4sIAM0VbGgAA+0923YbN5LvPMf/gFUeLFls0vc4dCYxJUqOdnXxWPRkPPGc
+H4sIAEwZbGgAA+0923YbN5LvPMf/gFUeLFls0vc4dCYxJUqOdnXxWPRkPPGc
 OU02SHbc7Ob0RTITab9lv2W/bOsCoIG+UBdnz87DcjIWyQaqClWFqkKhAHqe
 96AzTYIwng9Ekc+8Vw86Dzp5mEdyIIbi4/D0rRj5uS9OkkBGYpak4p2fZeGF
 FKcyv0zSz+IovpBxnqRr7OlPJqm8GLQ3YpAE7UEnSKaxvwRMQerPcm89n3jh
@@ -1440,34 +1440,34 @@ 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
-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
+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
 
 -->
 

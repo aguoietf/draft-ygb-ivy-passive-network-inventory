@@ -65,7 +65,7 @@ module ietf-nwi-passive-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2024-10-21 {
+  revision 2025-07-07 {
     description
       "Initial version";
     reference

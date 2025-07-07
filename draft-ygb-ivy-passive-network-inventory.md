@@ -243,7 +243,7 @@ TBD
 
 ## YANG Data Model for Passive Device Inventory
 ~~~~
-   <CODE BEGINS> file "ietf-nwi-passive-inventory@2025-06-30.yang"
+   <CODE BEGINS> file "ietf-nwi-passive-inventory@2025-07-07.yang"
 {::include ./ietf-nwi-passive-inventory.yang}
    <CODE ENDS>
 ~~~~

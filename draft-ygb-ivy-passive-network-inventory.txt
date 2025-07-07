@@ -32,7 +32,7 @@ Expires: 9 January 2026                                        Futurewei
 
 
             A YANG Data Model for Passive Network Inventory
-               draft-ygb-ivy-passive-network-inventory-01
+               draft-ygb-ivy-passive-network-inventory-02
 
 Abstract
 

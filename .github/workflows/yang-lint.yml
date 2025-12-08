@@ -4,9 +4,11 @@ on:
   push:
     paths:
     - '**.yang'
+    - '**.json'    
   pull_request:
     paths:
     - '**.yang'
+    - '**.json'    
   workflow_dispatch:
 
 permissions:

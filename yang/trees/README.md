@@ -1,1 +1,3 @@
-# Generated trees will be listed in this folder
+# Trees
+
+* Trees are automatically generated and stored in this folder 

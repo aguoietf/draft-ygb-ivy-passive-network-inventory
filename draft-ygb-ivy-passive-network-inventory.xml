@@ -10,7 +10,7 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 
-<rfc ipr="trust200902" docName="draft-ygb-ivy-passive-network-inventory-03" category="std">
+<rfc ipr="trust200902" docName="draft-ygb-ivy-passive-network-inventory-04" category="std">
 
   <front>
     <title abbrev="Passive Network Inventory YANG Model">A YANG Data Model for Passive Network Inventory</title>
@@ -1286,11 +1286,11 @@ module ietf-nwi-passive-inventory {
   </back>
 
 <!-- ##markdown-source:
-H4sIAKjMpWkAA+0923YbN5LvOsf/gJUfLFls0vc4dCYxJUqOdnXxSPR4PPGc
+H4sIANPNpWkAA+0923YbN5LvOsf/gJUfLFls0vc4dCYxJUqOdnXxSPR4PPGc
 OU02SHbc7Ob0RTITab9lv2W/bOsCoIG+UBdnz87DcjIWyQaqClWFqkKhAHqe
 92BjkgRhPOuLIp96rx9sPNjIwzySfTEQnwYn78TQz31xnAQyEtMkFe/9LAsv
 pDiR+WWSfhGH8YWM8yRdYU9/PE7lRb+9EYMkaA82gmQS+wvAFKT+NPdWs7EX
-Xqy8JXf2Yu7shbqz9+T5gw38apYmxbIvDv/ySXyEj0C9eIdfwVj8XM6gaV9k
+Xqy8JXf2Yu7shbqz9+TFgw38apYmxbIvDv/ySXyEj0C9eIdfwVj8XM6gaV9k
 efBgI1ymfZGnRZY/e/Lk+yfPkMYs9+PgH36UxIB5JbMHG8uwL37Jk0lHZEma
 p3KawbvVgt9MksUC0Gd/p/EV+TxJ+w82hPDwHyF4AINwXvjiXZHwl0kK7Dwo
 8iKVlzLk7+TCD6O+8LHlrEi6ocynb2f4ZRdQ1CCOkoX4ix+LPV/GciYXFuCT
@@ -1474,7 +1474,7 @@ s5NhvqC+JWqRTW3pLnX0FsDPS/Hh7DDjHyJDtHxK6a/HRwTgTM5wyx2DAhrI
 81ev8UfK8BgMXZuR9cuLQaE5gOqL+x11s9Gh5Pb44FOfzOrh/vk7agB09cVJ
 b/BG6do/C0n3NANium0sxhblubuupq3hl6xSwkV207kFxDlSwaKwr9lRVwuR
 nWbeaPfz5NkT5QwMP/jnLG8YtKH2m1jHJ+T69jFBRaUKNfvmVEjJFM/zqPRw
-438An+tjvWJ5AAA=
+438AOIc592J5AAA=
 
 -->
 

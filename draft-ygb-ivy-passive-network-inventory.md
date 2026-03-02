@@ -4,7 +4,7 @@ coding: utf-8
 title: A YANG Data Model for Passive Network Inventory
 
 abbrev: Passive Network Inventory YANG Model
-docname: draft-ygb-ivy-passive-network-inventory-03
+docname: draft-ygb-ivy-passive-network-inventory-04
 workgroup: IVY Working Group
 category: std
 ipr: trust200902

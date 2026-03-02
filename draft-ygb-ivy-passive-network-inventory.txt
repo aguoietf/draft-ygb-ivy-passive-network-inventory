@@ -16,7 +16,7 @@ Expires: 4 September 2026                                          Nokia
 
 
             A YANG Data Model for Passive Network Inventory
-               draft-ygb-ivy-passive-network-inventory-03
+               draft-ygb-ivy-passive-network-inventory-04
 
 Abstract
 

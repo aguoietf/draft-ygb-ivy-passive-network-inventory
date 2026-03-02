@@ -14,37 +14,13 @@ pi: [toc, sortrefs, symrefs, comments]
 
 author:
   -
-    name: Chaode Yu
-    org: Huawei
-    email: yuchaode@huawei.com
-  -
     name: Aihua Guo
     org: Futurewei
     email: aihuaguo.ietf@gmail.com
   -
-    name: Italo Busi
-    org: Huawei
-    email: italo.busi@huawei.com
-  -
-    name: Mohammad Boroon
-    org: Highstreet
-    email: mohammad.boroon@highstreet-technologies.com
-  -
-    name: Sergio Belotti
-    org: Nokia
-    email: sergio.belotti@nokia.com
-  -
     name: Tom Van Caenegem
     org: Nokia
     email: tom.van_caenegem@nokia.com
-  -
-    name: Swaminathan 1. S.
-    org: Nokia
-    email: swaminathan.1.s@nokia.com
-  -
-    name: Swaminathan B.
-    org: Nokia
-    email: swaminathan.b@nokia.com
   -
     name: Nigel Davis
     org: Ciena
@@ -57,6 +33,32 @@ author:
     name: Brad Peters
     org: NBN
     email: bradpeters@nbnco.com.au
+
+contributor:
+  -
+    name: Chaode Yu
+    org: Huawei
+    email: yuchaode@huawei.com
+  -
+    name: Mohammad Boroon
+    org: Highstreet
+    email: mohammad.boroon@highstreet-technologies.com
+  -
+    name: Italo Busi
+    org: Huawei
+    email: italo.busi@huawei.com
+  -
+    name: Sergio Belotti
+    org: Nokia
+    email: sergio.belotti@nokia.com
+  -
+    name: Swaminathan 1. S.
+    org: Nokia
+    email: swaminathan.1.s@nokia.com
+  -
+    name: Swaminathan B.
+    org: Nokia
+    email: swaminathan.b@nokia.com
   -
     name: Bin Yu Yun
     org: ETRI
@@ -73,7 +75,6 @@ author:
     name: Avinash Sakalabhaktula
     org: Radisys
     email: Avinash.Sakalabhaktula@radisys.com
-
 
 
 
@@ -229,9 +230,10 @@ TBD
 
 # YANG Model Overview
 
-   The YANG data model in this draft augments the model defined in {{!I-D.draft-ietf-ivy-network-inventory-yang}} with the following information:
-   - Passive devices: a list of passive devices with extended attributed reported by the domain controller.
-   - Cables: a list of cables with each containing an optional list of child cables.
+The YANG data model in this draft augments the model defined in {{!I-D.draft-ietf-ivy-network-inventory-yang}} with the following information:
+
+  - Passive devices: a list of passive devices with extended attributed reported by the domain controller.
+  - Cables: a list of cables with each containing an optional list of child cables.
    
 # Model Tree Diagram
 ~~~~

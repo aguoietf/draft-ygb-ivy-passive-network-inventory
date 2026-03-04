@@ -70,6 +70,9 @@ TODO Introduction
 
 {::boilerplate bcp14-tagged}
 
+# Operational Considerations
+
+TBC per {{?I-D.opsarea-rfc5706bis}}.
 
 # Security Considerations
 

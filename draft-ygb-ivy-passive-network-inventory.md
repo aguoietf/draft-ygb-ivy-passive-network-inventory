@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: IVY Working Group
+area: "Operations and Management"
+workgroup: "Network Inventory YANG"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Network Inventory YANG"
+  type: "Working Group"
+  mail: "ivy@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/ivy"
+  github: "aguoietf/draft-ygb-ivy-passive-network-inventory"
+  latest: "https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/draft-ygb-ivy-passive-network-inventory.html"
 
 author:
  -

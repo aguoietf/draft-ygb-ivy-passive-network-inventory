@@ -1,44 +1,12 @@
-# A YANG Data Model for Passive Network Inventory
-# draft-ygb-ivy-passive-network-inventory
+# "Internet-Draft with YANG Modules" Template Repository
 
-## Scope
+Use this repository as a template if you want to start working on
+[IETF](https://www.ietf.org/) documents with YANG Modules. This covers validation of YANG modules, generation of trees, and validation of JSON examples.
 
-This repository is to facilitate the work on the [IETF IVY](https://datatracker.ietf.org/wg/ivy/documents/) Individual Internet-Draft,
-"[A YANG Data Model for Passive Network Inventory](https://datatracker.ietf.org/doc/draft-ygb-ivy-passive-network-inventory/)".
+[Click here to create a new repository using the template](https://github.com/IETF-OPS-AD/I-D-with-yang-template/generate).
+Make sure to check "Include all branches" when creating your repository.
 
-## Abstract
-This document provides a YANG data model for the inventory information of passive devices. This data model is augmenting the base model defined by [draft-ietf-ivy-network-inventory-yang], and will be used in the northbound of a domain controller.
+Once you have created your own repository, start work by
+[renaming the `draft-todo-yourname-protocol.md` file](../../edit/main/draft-todo-yourname-protocol.md) and adding your YANG files under "yang" folder.
 
-## Contributing
-
-This repository relates to activities in the Internet Engineering Task Force
-([IETF](https://www.ietf.org/)). All material in this repository is considered
-Contributions to the IETF Standards Process, as defined in the intellectual
-property policies of IETF currently designated as
-[BCP 78](https://www.rfc-editor.org/info/bcp78),
-[BCP 79](https://www.rfc-editor.org/info/bcp79) and the
-[IETF Trust Legal Provisions (TLP) Relating to IETF Documents](http://trustee.ietf.org/trust-legal-provisions.html).
-
-Any edit, commit, pull request, issue, comment or other change made to this repository constitutes Contributions to the IETF Standards Process
-(https://www.ietf.org/).
-
-You agree to comply with all applicable IETF policies and procedures, including,
-BCP 78, 79, the TLP, and the TLP rules regarding code components (e.g. being
-subject to a Simplified BSD License) in Contributions.
-
-### Weekly Calls
-
-N/A
-
-### Other Resources
-
-Discussion of this work occurs on the
-[TEAS working group mailing list](https://mailarchive.ietf.org/arch/browse/teas/)
-([subscribe](https://www.ietf.org/mailman/listinfo/teas)). In addition to
-contributions in GitHub, you are encouraged to participate in discussions there.
-
-**Note**: Some working groups adopt a policy whereby substantive discussion of
-technical issues needs to occur on the mailing list.
-
-You might also like to familiarize yourself with other
-[working group documents](https://datatracker.ietf.org/wg/ccamp/documents/).
+This repository leverages [martinthomson/internet-draft-template](https://github.com/martinthomson/internet-draft-template) to build I-Ds and extends it to provide required tools to support IETF documents that include YANG mdoules.

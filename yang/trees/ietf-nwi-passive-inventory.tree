@@ -1,0 +1,246 @@
+module: ietf-nwi-passive-inventory
+
+  augment /nwi:network-inventory:
+    +--rw cable* [id]
+    |  +--rw id               string
+    |  +--rw length?          uint32
+    |  +--rw a-end
+    |  |  +--rw device-type?           identityref
+    |  |  +--rw (connected-device-type)?
+    |  |     +--:(passive)
+    |  |     |  +--rw device-id?       string
+    |  |     +--:(active)
+    |  |        +--rw ne-ref?          leafref
+    |  |        +--rw component-ref?   leafref
+    |  +--rw z-end
+    |  |  +--rw device-type?           identityref
+    |  |  +--rw (connected-device-type)?
+    |  |     +--:(passive)
+    |  |     |  +--rw device-id?       string
+    |  |     +--:(active)
+    |  |        +--rw ne-ref?          leafref
+    |  |        +--rw component-ref?   leafref
+    |  +--ro uuid?            yang:uuid
+    |  +--rw name?            string
+    |  +--rw description?     string
+    |  +--rw alias?           string
+    |  +--rw cable-type?      identityref
+    |  +--rw cable-role?      identityref
+    |  +--rw optical-cable
+    |  |  +--rw fiber-core-num?   uint32
+    |  |  +--rw fiber-type?       identityref
+    |  |  +--rw attenuation?      decimal64
+    |  +--rw child-cable* [index]
+    |     +--rw index     uint8
+    |     +--rw id?       string
+    |     +--rw length?   uint32
+    |     +--rw a-end
+    |     |  +--rw device-type?           identityref
+    |     |  +--rw (connected-device-type)?
+    |     |     +--:(passive)
+    |     |     |  +--rw device-id?       string
+    |     |     +--:(active)
+    |     |        +--rw ne-ref?          leafref
+    |     |        +--rw component-ref?   leafref
+    |     +--rw z-end
+    |        +--rw device-type?           identityref
+    |        +--rw (connected-device-type)?
+    |           +--:(passive)
+    |           |  +--rw device-id?       string
+    |           +--:(active)
+    |              +--rw ne-ref?          leafref
+    |              +--rw component-ref?   leafref
+    +--rw passive-device* [id]
+       +--rw id              string
+       +--ro uuid?           yang:uuid
+       +--rw name?           string
+       +--rw description?    string
+       +--rw alias?          string
+       +--rw device-type?    identityref
+       +--rw custom-tags*    string
+       +--rw location-ref?   nil:ni-location-ref
+       +--rw passive-port* [id]
+          +--rw id                string
+          +--ro uuid?             yang:uuid
+          +--rw name?             string
+          +--rw description?      string
+          +--rw alias?            string
+          +--rw port-type?        identityref
+          +--rw fiber-core-num?   uint32
+
+  grouping connected-device-end:
+    +-- device-type?           identityref
+    +-- (connected-device-type)?
+       +--:(passive)
+       |  +-- device-id?       string
+       +--:(active)
+          +-- ne-ref?          leafref
+          +-- component-ref?   leafref
+  grouping connected-device-ref:
+    +-- a-end
+    |  +-- device-type?           identityref
+    |  +-- (connected-device-type)?
+    |     +--:(passive)
+    |     |  +-- device-id?       string
+    |     +--:(active)
+    |        +-- ne-ref?          leafref
+    |        +-- component-ref?   leafref
+    +-- z-end
+       +-- device-type?           identityref
+       +-- (connected-device-type)?
+          +--:(passive)
+          |  +-- device-id?       string
+          +--:(active)
+             +-- ne-ref?          leafref
+             +-- component-ref?   leafref
+  grouping common-cable-attributes:
+    +-- id?       string
+    +-- length?   uint32
+    +-- a-end
+    |  +-- device-type?           identityref
+    |  +-- (connected-device-type)?
+    |     +--:(passive)
+    |     |  +-- device-id?       string
+    |     +--:(active)
+    |        +-- ne-ref?          leafref
+    |        +-- component-ref?   leafref
+    +-- z-end
+       +-- device-type?           identityref
+       +-- (connected-device-type)?
+          +--:(passive)
+          |  +-- device-id?       string
+          +--:(active)
+             +-- ne-ref?          leafref
+             +-- component-ref?   leafref
+  grouping optical-cable-attributes:
+    +-- optical-cable
+       +-- fiber-core-num?   uint32
+       +-- fiber-type?       identityref
+       +-- attenuation?      decimal64
+  grouping cable-attributes:
+    +-- id?              string
+    +-- length?          uint32
+    +-- a-end
+    |  +-- device-type?           identityref
+    |  +-- (connected-device-type)?
+    |     +--:(passive)
+    |     |  +-- device-id?       string
+    |     +--:(active)
+    |        +-- ne-ref?          leafref
+    |        +-- component-ref?   leafref
+    +-- z-end
+    |  +-- device-type?           identityref
+    |  +-- (connected-device-type)?
+    |     +--:(passive)
+    |     |  +-- device-id?       string
+    |     +--:(active)
+    |        +-- ne-ref?          leafref
+    |        +-- component-ref?   leafref
+    +--ro uuid?            yang:uuid
+    +-- name?            string
+    +-- description?     string
+    +-- alias?           string
+    +-- cable-type?      identityref
+    +-- cable-role?      identityref
+    +-- optical-cable
+       +-- fiber-core-num?   uint32
+       +-- fiber-type?       identityref
+       +-- attenuation?      decimal64
+  grouping child-cables:
+    +-- child-cable* [index]
+       +-- index     uint8
+       +-- id?       string
+       +-- length?   uint32
+       +-- a-end
+       |  +-- device-type?           identityref
+       |  +-- (connected-device-type)?
+       |     +--:(passive)
+       |     |  +-- device-id?       string
+       |     +--:(active)
+       |        +-- ne-ref?          leafref
+       |        +-- component-ref?   leafref
+       +-- z-end
+          +-- device-type?           identityref
+          +-- (connected-device-type)?
+             +--:(passive)
+             |  +-- device-id?       string
+             +--:(active)
+                +-- ne-ref?          leafref
+                +-- component-ref?   leafref
+  grouping cables:
+    +-- cable* [id]
+       +-- id?              string
+       +-- length?          uint32
+       +-- a-end
+       |  +-- device-type?           identityref
+       |  +-- (connected-device-type)?
+       |     +--:(passive)
+       |     |  +-- device-id?       string
+       |     +--:(active)
+       |        +-- ne-ref?          leafref
+       |        +-- component-ref?   leafref
+       +-- z-end
+       |  +-- device-type?           identityref
+       |  +-- (connected-device-type)?
+       |     +--:(passive)
+       |     |  +-- device-id?       string
+       |     +--:(active)
+       |        +-- ne-ref?          leafref
+       |        +-- component-ref?   leafref
+       +--ro uuid?            yang:uuid
+       +-- name?            string
+       +-- description?     string
+       +-- alias?           string
+       +-- cable-type?      identityref
+       +-- cable-role?      identityref
+       +-- optical-cable
+       |  +-- fiber-core-num?   uint32
+       |  +-- fiber-type?       identityref
+       |  +-- attenuation?      decimal64
+       +-- child-cable* [index]
+          +-- index     uint8
+          +-- id?       string
+          +-- length?   uint32
+          +-- a-end
+          |  +-- device-type?           identityref
+          |  +-- (connected-device-type)?
+          |     +--:(passive)
+          |     |  +-- device-id?       string
+          |     +--:(active)
+          |        +-- ne-ref?          leafref
+          |        +-- component-ref?   leafref
+          +-- z-end
+             +-- device-type?           identityref
+             +-- (connected-device-type)?
+                +--:(passive)
+                |  +-- device-id?       string
+                +--:(active)
+                   +-- ne-ref?          leafref
+                   +-- component-ref?   leafref
+  grouping passive-device-ports:
+    +-- passive-port* [id]
+       +-- id                string
+       +--ro uuid?             yang:uuid
+       +-- name?             string
+       +-- description?      string
+       +-- alias?            string
+       +-- port-type?        identityref
+       +-- fiber-core-num?   uint32
+  grouping passive-devices:
+    +-- passive-device* [id]
+       +-- id              string
+       +--ro uuid?           yang:uuid
+       +-- name?           string
+       +-- description?    string
+       +-- alias?          string
+       +-- device-type?    identityref
+       +-- custom-tags*    string
+       +-- location-ref?   nil:ni-location-ref
+       +-- passive-port* [id]
+          +-- id                string
+          +--ro uuid?             yang:uuid
+          +-- name?             string
+          +-- description?      string
+          +-- alias?            string
+          +-- port-type?        identityref
+          +-- fiber-core-num?   uint32

@@ -1,0 +1,604 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2026-03-19T02:31:06.064104+00:00",
+  "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDONDocYM6h9gT4",
+      "title": "Need to define a passive device",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/1",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Further investigate whether there is a need to define a passive device list or whether passive devices can be modelled using the network-element list of the base inventory model and defining a new ne-type\r\n",
+      "createdAt": "2024-12-04T10:27:12Z",
+      "updatedAt": "2024-12-18T15:55:58Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "body": "i think to answer this we need to identify the differences of \"A physical network element\" versus \"A passive network element\" and if identity ne-type can be extended to be applied to a passive network element. ",
+          "createdAt": "2024-12-18T15:55:56Z",
+          "updatedAt": "2024-12-18T15:55:56Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDONDocYM6h-g1A",
+      "title": "Need to associate a link with a cable",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/2",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It is not clear whether there is a need to define some leafref to report the association between a link (in the topology model) and a cable (in the passive inventory model)\r\n\r\nThe following picture tries to explain how this association can be derived from existing information in the topology inventory model (associating a TP with a port component) and the base and passive inventory models:\r\n\r\n[link-cable-relationship-00.pptx](https://github.com/user-attachments/files/18007659/link-cable-relationship-00.pptx)\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/MxdA8RUlwuRnIbLKfgR_NFZRB0Y/\r\n",
+      "createdAt": "2024-12-04T12:00:03Z",
+      "updatedAt": "2025-04-07T15:01:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "As you are aware, in TAPI we concluded that we needed to add a relationship from the link in the functional/logical topology to the passive inventory. BUT we chose to provide a sliding abstraction where the model could be very shallow providing just \"abstract strands\" between relevant passive devices or could provide a deeper model where the abstract strand is a 1:1  to the actual strand.\n\nSo, to the question, yes we do need to provide the opportunity to relate the functional/logical link to the passive inventory model. This should be a conditional opportunity (augment) and it should provide various alternative abstractions.",
+          "createdAt": "2025-04-07T15:01:12Z",
+          "updatedAt": "2025-04-07T15:01:12Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDONDocYM6iBrXQ",
+      "title": "Brad's comments ",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/3",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See the following mailing list discussion threads:\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/VTrJIePXMHY0B1XdBrENqSg20VE/\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/74IRgTOrwYmzLKDYbu4Tmg8XlyA/\n",
+      "createdAt": "2024-12-04T17:12:00Z",
+      "updatedAt": "2025-01-17T22:13:58Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDONDocYM6jzsw4",
+      "title": "Identities clean-up, passive-device-types",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/4",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The Identities defined can mostly be changed to typedef with a enumeration that addresses the types. \r\nAnother suggestion is the base identities and their use-cases be moved to a types yang file to reduce the size of the main module. i.e ietf-nwi-passive-device-types.yang. \r\n\r\nOr we reduce the identities to only one base identity namely passive-device and nest it, as most of these identities share same attributes in reality such as length, attenuation,..",
+      "createdAt": "2024-12-18T16:17:33Z",
+      "updatedAt": "2024-12-18T16:18:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDONDocYM6mrXyp",
+      "title": "Modeling intra-NE cables and passive devices",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/5",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "There are passive devices, e.g. filter, splitter, fixed attenuator, and fiber cables that connect cards/ports in the same NE. Can they be modeled as inventory in the same way as external cables and passive devices?\n",
+      "createdAt": "2025-01-17T22:10:53Z",
+      "updatedAt": "2025-01-17T22:10:53Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDONDocYM6mraQA",
+      "title": "Modeling methodology for passive inventory",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/6",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "There are different thoughts regarding how passive devices and cables can be modeled, i.e.,\n- modeled as new inventory objects (as -v0 of this draft defines)\n- modeled as new NE types for passive devices, and new inventory object for cables\n- modeled as topology objects by augmenting RFC8345, also be used as part of SIMAP hierarchy\n",
+      "createdAt": "2025-01-17T22:19:42Z",
+      "updatedAt": "2025-07-14T16:08:56Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Checking the differences between NEs and passive device, I have found:\n\nThe following attributes are in common (or adapted to be in common):\n\n| network-element | passive-device\n|---|---\n| ne-id | id\n| uuid | uuid\n| name | name\n| description | description\n| alias | alias\n| ne-type | device-type\n\nThe custom-tags attribute defined for the passive-device looks quite generic and applicable also to managed network elements\n\nThe location-ref defined for the passive-device can be redefined like for the active network element by a reference for the location inventory to the network-element\n\nThe following network-element attributes are not defined for the passive devices but it is not clear why they are not applicable to passive devices as well:\n- hardware-rev (to be renamed is as product-rev)\n- product-name\n\nThe following network-element attributes are planned to be removed also from the base inventory model:\n- mfg-date\n- serial-number\n\nThe following network-element attributes are not applicable to passive devices but are currently under discussion whether to keep or removed and optional since not applicable to all the managed network element instances:\n- software-rev\n- software-patch-rev*\n",
+          "createdAt": "2025-07-14T16:08:56Z",
+          "updatedAt": "2025-07-14T16:08:56Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "I_kwDONDocYM6mrbAn",
+      "title": "Scope of passive inventory",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/7",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Define the scope of passive inventory management. E.g.:\n\n- Type of network and devices\n- Type of cables and passive sites\n- Intra- and/or inter-NE devices\n",
+      "createdAt": "2025-01-17T22:22:10Z",
+      "updatedAt": "2025-02-11T16:29:45Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "For the cables, see also some comments in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2607717141",
+          "createdAt": "2025-01-22T16:39:35Z",
+          "updatedAt": "2025-01-22T16:39:35Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "body": "Input:\n\nPassive components: functional components that are undetectable, inside & outside a box (NE?)\nTAPI representation: \n - span between connectors (not between the pins of connectors). span contains strands, span can be multi-ended. span is a functional component. If RFC8345 link is extended to support mp2mp links it is equivalent to a span \n - joint where multiple fibers can be combined\n\nTBD: to clarify the rationale of modeling\nweekly calls ",
+          "createdAt": "2025-01-27T16:38:13Z",
+          "updatedAt": "2025-01-27T16:38:13Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * span between connectors (not between the pins of connectors). span contains strands, span can be multi-ended. span is a functional component. If RFC8345 link is extended to support mp2mp links it is equivalent to a span.\n\nI understand that if the span is p2p, we can model it as a link using the Network Inventory Topology model in [draft-ietf-ivy-network-inventory-topology](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology), which augments RFC8345.\n\nIMHO, p2p spans are the typical spans being used in optical transport networks.\n\nI would like to see some examples of mp2mp spans to validate whether this approach can be extended or there is a need to model the span explicitly in the network inventory model (base or augmentations, like the passive inventory).\n\nAs already discussed in NMOP WG, RFC8345 can model mp2mp links. The debate is whether the current model is \"good enough\" or needs to be re-designed.\n\nSee also some notes from previous discussion: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/32#issuecomment-2075971592",
+          "createdAt": "2025-01-28T19:44:35Z",
+          "updatedAt": "2025-01-31T15:43:55Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "body": "For discussion - passive infrastructure based on Italo's previous slides.\n\n[passive-infrastructure.pptx](https://github.com/user-attachments/files/18625461/passive-infrastructure.pptx)",
+          "createdAt": "2025-01-31T22:47:43Z",
+          "updatedAt": "2025-01-31T22:47:43Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > * span between connectors (not between the pins of connectors). span contains strands, span can be multi-ended. span is a functional component. If RFC8345 link is extended to support mp2mp links it is equivalent to a span.\n> \n> I understand that if the span is p2p, we can model it as a link using the Network Inventory Topology model in [draft-ietf-ivy-network-inventory-topology](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology), which augments RFC8345.\n> \n> IMHO, p2p spans are the typical spans being used in optical transport networks.\n> \n> I would like to see some examples of mp2mp spans to validate whether this approach can be extended or there is a need to model the span explicitly in the network inventory model (base or augmentations, like the passive inventory).\n> \n> As already discussed in NMOP WG, RFC8345 can model mp2mp links. The debate is whether the current model is \"good enough\" or needs to be re-designed.\n> \n> See also some notes from previous discussion: [ietf-ivy-wg/network-inventory-yang#32 (comment)](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/32#issuecomment-2075971592)\n\ndrfat-ietf-ivy-netowrk-inventory-topology, is augmenting termination-point (TP) of RFC8345 referencing a \"port\" as inventory element from which TP is abstracted, and is augmenting node of RFC8345 referencing NE as inventory element from which node is abstracted. Following the same path, what would be the inventory element from which \"link\" is abstracted ? The span?",
+          "createdAt": "2025-02-03T10:14:13Z",
+          "updatedAt": "2025-02-03T10:14:13Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "These are some slides that I have drafted during the **[2024-04-24 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/blob/main/minutes/minutes-2024-04-24.md)** but not uploaded on github: [physical-span-model-00.pptx](https://github.com/user-attachments/files/18644053/physical-span-model-00.pptx)\n",
+          "createdAt": "2025-02-03T15:00:58Z",
+          "updatedAt": "2025-02-03T15:00:58Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > > * span between connectors (not between the pins of connectors). span contains strands, span can be multi-ended. span is a functional component. If RFC8345 link is extended to support mp2mp links it is equivalent to a span.\n> > \n> > \n> > I understand that if the span is p2p, we can model it as a link using the Network Inventory Topology model in [draft-ietf-ivy-network-inventory-topology](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology), which augments RFC8345.\n> > IMHO, p2p spans are the typical spans being used in optical transport networks.\n> > I would like to see some examples of mp2mp spans to validate whether this approach can be extended or there is a need to model the span explicitly in the network inventory model (base or augmentations, like the passive inventory).\n> > As already discussed in NMOP WG, RFC8345 can model mp2mp links. The debate is whether the current model is \"good enough\" or needs to be re-designed.\n> > See also some notes from previous discussion: [ietf-ivy-wg/network-inventory-yang#32 (comment)](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/32#issuecomment-2075971592)\n> \n> drfat-ietf-ivy-netowrk-inventory-topology, is augmenting termination-point (TP) of RFC8345 referencing a \"port\" as inventory element from which TP is abstracted, and is augmenting node of RFC8345 referencing NE as inventory element from which node is abstracted. Following the same path, what would be the inventory element from which \"link\" is abstracted ? The span?\n\nThat was my initially thought but after some discussion on the list I am not sure we need to directly associate the link with a span, see https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/2",
+          "createdAt": "2025-02-03T17:01:11Z",
+          "updatedAt": "2025-02-03T17:01:11Z"
+        },
+        {
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Adding Passive Infrastructure Microwave. the passive ports are still to be discussed. \n\n[passive-infrastructure-microwave.pptx](https://github.com/user-attachments/files/18754440/passive-infrastructure-microwave.pptx)\n",
+          "createdAt": "2025-02-11T16:29:44Z",
+          "updatedAt": "2025-02-11T16:29:44Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "I_kwDONDocYM6qRpf7",
+      "title": "Handling of broad physical modeling such as geographic structures etc",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/8",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> **[2025-02-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-12)**\n> \n> - broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n> \n>  This can be elaborated in passive model. Reference Architecture: GIS system.  Will Raise a case in Passive.\n> \n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515\n\nRaised here to take it forward as part of passive.",
+      "createdAt": "2025-02-17T04:54:30Z",
+      "updatedAt": "2025-02-17T04:54:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDONDocYM6rWwxb",
+      "title": "Rename Prefix",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/9",
+      "state": "CLOSED",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "since prefix **ni** is not anymore the prefix of base network inventory model and it is changed to **nwi**, proposing the module prefix to be changed to `nwi-passive`",
+      "createdAt": "2025-02-24T12:52:26Z",
+      "updatedAt": "2025-06-30T15:12:51Z",
+      "closedAt": "2025-06-30T15:12:51Z",
+      "comments": [
+        {
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closing with reference to PR #11 ",
+          "createdAt": "2025-06-30T15:12:51Z",
+          "updatedAt": "2025-06-30T15:12:51Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "I_kwDONDocYM6wBiZ5",
+      "title": "Microwave Passive Inventory",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/10",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "mamali68"
+      ],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "An issue to start discussion on concept and adding microwave passive devices as data nodes to data model. \ninitial illustration. \n\n[passive-infrastructure-microwave.pptx](https://github.com/user-attachments/files/19488172/passive-infrastructure-microwave.pptx)",
+      "createdAt": "2025-03-27T14:26:16Z",
+      "updatedAt": "2025-08-07T13:02:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tkall",
+          "authorAssociation": "NONE",
+          "body": "It is assumed that MW Passive devices are included in the HW Inventory.\nSpecific attributes of these devices should be identified to be included in the MW model in some way (may be Radio capabilities or Radio Equipment Inventory indicated these attributes).",
+          "createdAt": "2025-08-07T13:02:33Z",
+          "updatedAt": "2025-08-07T13:02:33Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDONDocYM61ULZn",
+      "title": "add feature to leaf fiber-core-num",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/12",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "the leaf **fiber core-num** is making the grouping **passive-device-ports** specific to optical fiber, \nSuggestion to introduce feature to check if the device supports optical before creating the leaf, \n\nexample:  `feature optical-device ` and check it in the grouping by `if-feature` statement. \n\ntherefore, the same grouping can be used for any other ports. ",
+      "createdAt": "2025-05-06T08:24:37Z",
+      "updatedAt": "2025-05-06T10:30:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "IMHO, the feature is too much coarse grained\n\nIf a controller have a mixed of optical and non-optical cables, the feature shall be supported but the fiber core-num would be applicable only to optical cables and not to non-optical cables\n\nIf there is an attribute indicated whether the cable is optical or non-optical, a when statement seems better to me\n\nAnother option could be to generalize the attribute to report either the number of fiber cores or the number of wires in a cable",
+          "createdAt": "2025-05-06T10:30:21Z",
+          "updatedAt": "2025-05-06T10:30:21Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDONDocYM61Uh91",
+      "title": "Add common-cable-segment-attributes grouping",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/13",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "For the purpose of having a model that can be used as multi-technology data model, i suggest we add a grouping called common-cable-segment-attributes and consolidate shared attributes . this groping is then used in specific containers/groupings\n\nSuggestion: \n\n```\n[...]\ngrouping common-cable-segment-attributes {\n    description\n      \"the common attributes of passive cables\";\n       leaf length {\n        type uint32;\n        units \"meter\";\n        description\n          \"Length of the cable in meter.\";\n      }\n      leaf attenuation {\n        type decimal64 {\n          fraction-digits 2;\n        }\n        units \"dB\";\n        description\n          \"The cable attenuation in dB.\";\n      }\n      leaf serial-num {\n        type string;\n        description\n          \"The serial number of the cable.\";\n      }\n      leaf mfg-name {\n        type string;\n        description\n          \"The name of the manufacturer of the cable.\";\n      }\n      leaf part-number {\n        type string;\n        description\n          \"The vendor-specific part number of the cable.\";\n      }\n      uses connected-device-ref;\n  }\n[...]\n```",
+      "createdAt": "2025-05-06T08:57:33Z",
+      "updatedAt": "2025-06-30T15:12:04Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As per discussion in Meeting on 30.06.2025 this definition is not valid anymore.\n\n- Cable that contains child cables in series (sequenced) \n- cable-type defines the type of Cable.\n- **cable-segment** will be changed to **child-cable**\n\nthis can be closed with reference to the schematic shown in file. The open point is shall there be a common-cable-attributes? a set of attributes that are shared between different types and different domains. @aguoietf \n\n[cable-child-association.pptx](https://github.com/user-attachments/files/20982173/cable-child-association.pptx)",
+          "createdAt": "2025-06-30T15:11:30Z",
+          "updatedAt": "2025-06-30T15:12:04Z"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "I_kwDONDocYM66BajC",
+      "title": "Tom's comments on PON passive infrastructure",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/14",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "\n1)\u201dThe methods for discovering these devices are implementation-specific and fall\n   outside the scope of this document.\u201d\n\nTom comment 0: \u201cdiscovering\u201d may not be the right word here\u2026 it is more about ingestion into the (passive) inventory data model, no?\n\nProposal: \"learning about\"\n\n\n2)\n\u201cPassive Infrastructure in Optical Access Networks (keep original title)\nProposal: add text to indicate using PON as an example of optical access network with significant passive infrastructure.\n\n   _The_ Passive infrastructure in _passive_ optical networks, often referred to\n   as Optical Distribution Network (ODN), is the physical _optical_ fiber-_based_ \n   ~~optic~~ network that connects the Optical Line Terminal (OLT) _typically hosted_ in _a_ ~~the~~\n   central office to  with the Optical Network Unit/Terminal (ONU/ONT) _typically deployed_ at the\n   user's location.  _The_ ODN ~~uses~~ _is equipped with_ one or multiple (typically two stages) cascaded passive optical\n   splitters _thus creating a physical point-to-multipoint fiber network between an OLT port and the multiple connected ONU/ONTs_. ~~to divide the signal from a single OLT into multiple paths to serve multiple users using a single fiber.~~\n\n_The feeder segment of an ODN refers to the cabling between the OLT and the first splitter, whereas the distribution segment of the ODN comprises the fiber cabling between the first and second splitter stage. The drop segment comprises the drop fibers between the ONT/ONU and the second splitter stage._\n\n\n\n_The PON_ ODN _hence_ comprises optical\n   fiber cables _and splitters but also_ ~~connectors, and~~ many auxiliary components, _such as connectors, fiber distribution frames, wavelength co-existence elements etc.._ .  \n\n_The passive components where the optical signals entering or leaving the optical fibers are split/combined or cross-connected are typically hosted in mini cabinets e.g. at street corners , manholes, attached to utility poles etc\u2026_\n\nProposal: add also FDT and FAT as examples\n\n~~There are\n   multiple types of fibers, including feeder fibers (connecting the OLT\n   to a fiber distribution point (FDT)), distribution fibers (connecting\n   the distribution point to access points), and drop fibers (connecting\n   access points to ONUs/ONTs).~~\n\n(Tom comment 1: above are not really different \u201ctypes\u201d of fiber; feeder/distribution/drop typically refer to different ODN segments, and typically the cable in these segments will differ in terms of number of cores..)\n(tom comment 2: I am not sure \u201caccess point\u201d is a commonly used term.. I think it might have its origin from a wholesale-retail perspective?)\n\n\n~~The ODN cabinet acts as a central point\n   where different fiber optic cables and components are hosted, and\n   these ODN cabinets are often located on street corners, utility\n   poles, or other accessible areas along the route to the end users.~~\n\n   Figure 2 illustrates a typical passive infrastructure for optical\n   access networks.\u201d\n\n\n(Tom comment 3: we discussed on previous call corrections for this figure)\n\n\n3) \n\u201cPassive device: refers to a physical device within a network that\n      does not require external power to function, and simply\n      manipulates signals through processes like transmission,\n      reflection, splitting, filtering, or attenuation without actively\n      amplifying or generating the signal.  Examples include optical\n      fibers, splitters, couplers, and optical filters, all of which are\n      used to direct and manage ~~light~~ _communication_ signals within a system without\n      needing electricity.  A passive device typically does not have\n      management interfaces and is typically deployed in a location\n      tracked by the network operator.\u201d\n\nTom comment 4: per above edit, suggest to make the definition applicable to both electrical and optical systems..\n\nProposal: ...used to direct signals within a system without needing power\n",
+      "createdAt": "2025-06-05T11:59:51Z",
+      "updatedAt": "2025-06-05T14:49:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 17,
+      "id": "I_kwDONDocYM7AeDEJ",
+      "title": "rename nwi:common-entity-attributes to nwi:basic-common-entity-attributes",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/17",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "mamali68"
+      ],
+      "labels": [],
+      "body": "The grouping `common-entity-attributes` does not exist anymore in the base model. it has been broken down into two groupings. the one containing common attributes has been renamed in base model to `basic-common-entity-attributes` by [THIS PULL REQUEST](https://github.com/ietf-ivy-wg/network-inventory-yang/pull/107)\npassive inventory shall adopt this change.",
+      "createdAt": "2025-07-14T15:09:35Z",
+      "updatedAt": "2025-07-14T15:21:45Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDONDocYM7AeFeH",
+      "title": "cable-type to be moved inside grouping common-cable-attributes",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/18",
+      "state": "OPEN",
+      "author": "mamali68",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A suggestion to assume `leaf cable-type` as a common-cable-attribute and hence moving it inside the grouping. \nthis provides a more comprehensive grouping as the attribute can be used as common and the  change does not affect the module Tree.",
+      "createdAt": "2025-07-14T15:12:54Z",
+      "updatedAt": "2025-07-14T15:12:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDONDocYM7Afgmv",
+      "title": "Shorten the co-author list",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/19",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Shorten the number of front-page co-authors to 5 per IETF draft guideline",
+      "createdAt": "2025-07-14T17:28:10Z",
+      "updatedAt": "2025-07-14T17:28:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDONDocYM7z-Vqt",
+      "title": "Align Security Considerations with RFC9907",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/21",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See template in section 3.7.1 of [RFC9907](https://datatracker.ietf.org/doc/html/rfc9907)",
+      "createdAt": "2026-03-18T07:08:06Z",
+      "updatedAt": "2026-03-18T07:08:06Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 11,
+      "id": "PR_kwDONDocYM6UMDfC",
+      "title": "Draft V1 update",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/11",
+      "state": "MERGED",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-28T15:24:10Z",
+      "updatedAt": "2025-06-30T19:33:11Z",
+      "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "baseRefName": "master",
+      "baseRefOid": "c1d4b73605a847e9810c087357d41f86c600a984",
+      "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "headRefName": "v1-update",
+      "headRefOid": "64dd97b8c5e9839f344dcba90f6deb46b43d34f1",
+      "closedAt": "2025-06-30T19:33:11Z",
+      "mergedAt": "2025-06-30T19:33:11Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "25052ef6651a9cbfc84b74689584a09e3f4f70e7"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDONDocYM6nENVK",
+          "commit": {
+            "abbreviatedOid": "b40eb73"
+          },
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "the base model prefix is now changed to nwi, proposing including this change to version update according to #9 ",
+          "createdAt": "2025-04-29T10:31:07Z",
+          "updatedAt": "2025-04-29T10:31:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDONDocYM6o3ONR",
+          "commit": {
+            "abbreviatedOid": "64dd97b"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-12T12:30:47Z",
+          "updatedAt": "2025-05-12T12:35:25Z",
+          "comments": [
+            {
+              "originalPosition": 130,
+              "body": "minor edits: s/opticnetwork/optical network",
+              "createdAt": "2025-05-12T12:30:47Z",
+              "updatedAt": "2025-05-12T12:35:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDONDocYM6o3Rzg",
+          "commit": {
+            "abbreviatedOid": "64dd97b"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-12T12:36:05Z",
+          "updatedAt": "2025-05-12T12:36:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDONDocYM6cwbXr",
+      "title": "rebase v1-update",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/15",
+      "state": "MERGED",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-06-30T19:36:52Z",
+      "updatedAt": "2025-06-30T19:37:10Z",
+      "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "baseRefName": "v1-update",
+      "baseRefOid": "64dd97b8c5e9839f344dcba90f6deb46b43d34f1",
+      "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "headRefName": "master",
+      "headRefOid": "25052ef6651a9cbfc84b74689584a09e3f4f70e7",
+      "closedAt": "2025-06-30T19:37:10Z",
+      "mergedAt": "2025-06-30T19:37:10Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "604764cad362ed9d1a8dd10ebb66532e58639b78"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDONDocYM6cxKwN",
+      "title": "Second update of text and figure in preparation for submission",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/16",
+      "state": "MERGED",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "update draft text and YANG model: \r\n\r\n1. Setting MW to TBD\r\n2. Update example figure and text for transport and access\r\n3. Update YANG model to align with the text on the definition of cable and child cable\r\n4. other cosmetic updates. \r\n\r\nAddressed Issue #14, #13\r\n",
+      "createdAt": "2025-06-30T21:04:22Z",
+      "updatedAt": "2025-07-03T18:55:24Z",
+      "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "baseRefName": "master",
+      "baseRefOid": "25052ef6651a9cbfc84b74689584a09e3f4f70e7",
+      "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "headRefName": "v1-update",
+      "headRefOid": "ab45573b8a795c4e555985983f14a3ddd912e7fd",
+      "closedAt": "2025-07-03T18:55:24Z",
+      "mergedAt": "2025-07-03T18:55:24Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "075a7e83ead23d44bc95242469dcf087e53ad9e7"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDONDocYM7LcXPc",
+      "title": "Repository clean-up",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/20",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-18T07:00:00Z",
+      "updatedAt": "2026-03-18T07:01:14Z",
+      "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "baseRefName": "main",
+      "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
+      "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "headRefName": "clean-up",
+      "headRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
+      "closedAt": "2026-03-18T07:01:14Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}

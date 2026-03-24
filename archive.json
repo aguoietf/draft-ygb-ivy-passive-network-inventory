@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-22T02:31:38.719678+00:00",
+  "timestamp": "2026-03-24T02:24:30.938145+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -640,7 +640,7 @@
       "labels": [],
       "body": "Draft minutes of the side meeting during IETF 2026 (March 19, 2026)",
       "createdAt": "2026-03-19T14:16:03Z",
-      "updatedAt": "2026-03-19T14:17:18Z",
+      "updatedAt": "2026-03-24T01:18:47Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
@@ -651,7 +651,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "bradspau",
+          "authorAssociation": "NONE",
+          "body": "Question from the meeting of how do you determine how many cables can be present on a physical port the answer is it is a combination of what seals do the enclosures support and the size of the cables. Standard cable sizes compared to physical port sizing plus can you seal that combination of cables. ",
+          "createdAt": "2026-03-24T01:18:47Z",
+          "updatedAt": "2026-03-24T01:18:47Z"
+        }
+      ],
       "reviews": []
     }
   ]

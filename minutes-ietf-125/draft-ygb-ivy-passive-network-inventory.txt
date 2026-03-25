@@ -5,14 +5,14 @@
 Network Inventory YANG                                            A. Guo
 Internet-Draft                                                 Futurewei
 Intended status: Standards Track                          T. V. Caenegem
-Expires: 20 September 2026                                         Nokia
+Expires: 26 September 2026                                         Nokia
                                                                 N. Davis
                                                                    Ciena
                                                               M. Tilocca
                                                                 FiberCop
                                                                B. Peters
                                                                      NBN
-                                                           19 March 2026
+                                                           25 March 2026
 
 
             A YANG Data Model for Passive Network Inventory
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 September 2026.
+   This Internet-Draft will expire on 26 September 2026.
 
 Copyright Notice
 

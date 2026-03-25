@@ -20,9 +20,9 @@ Reviewed slide from Aihua (cable segmented into multiple segment):
 
 Clarified that today the cable segments are modelled as child cables under the cable
 
-The junctions are modelled as passive devices and the A-end/Z-end represents where the child cables are connected to the junctions
+The joint boxes (see Figure 1 and Figure 2 of the I-D) are modelled as passive devices and the A-end/Z-end represents where the child cables are connected to the joint boxes
 
-It is needed to report the junctions within the passive inventory e.g., for reporting their geolocation
+It is needed to report the joint boxes within the passive inventory e.g., for reporting their geolocation
 
 The patch panel can be modelled as a passive device where fibers from different cables are spliced
 
@@ -54,10 +54,9 @@ https://www.commscope.com/product-type/hubs-closures-terminals-boxes/access-term
 
 https://ecatalog.corning.com/optical-communications/AU/en/Fiber-Optic-Hardware/Terminals/OptiSheath%C2%AE-MultiPort-Flex-Splitter-Terminal/p/optisheath-multiport-flex-splitter-terminal
 
-
 Roberto has shown an example of a component which can be either passive or active depending on how it is configured:
 
-- [ ] @Aihua: please add a link
+- [ ] @Roberto: please add a link
 
 This can be easily modelled as a component within a NE if the passive devices are modelled as NEs and passive component as components within the NE.
 
@@ -67,8 +66,8 @@ Open questions for further discussions/considerations:
 
 1) Should we model passive devices as NEs?
 
-2) If so, should we model any passive device as NEs (including cable junctions) or only some passive devices and have an ad-hoc model for cable junctions?
+2) If so, should we model any passive device as NEs (including cable joint boxes) or only some passive devices and have an ad-hoc model for cable joint boxes?
 
-Note that a junction can be modelled as a passive device/component which splice the cable (i.e., all the fibers within the cable as a group)
+Note that a joint box can be modelled as a passive device/component which splice the cable (i.e., all the fibers within the cable as a group)
 
-3) If all the passive devices are associated with a node in the physical topology, it is possible to have a direct navigation between the link and the cable and remove the A-end/Z-end from the cable. Would this modelling approach be beneficial (e.g., for SIMAP)?
+3) If all the passive devices are associated with a node in the physical topology, it is possible to have a direct navigation between the link and the cable and remove the A-end/Z-end from the cable (since this association can be inferred from the TPs terminating the link and the ports associated with these TPs). Would this modelling approach be beneficial (e.g., for SIMAP)?

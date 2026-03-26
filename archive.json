@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-24T02:24:30.938145+00:00",
+  "timestamp": "2026-03-26T02:35:58.557904+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -612,7 +612,7 @@
       "labels": [],
       "body": "The main branch has been directly updated to use the new template from Med:\r\n\r\nhttps://github.com/IETF-OPS-AD/I-D-with-yang-template\r\n\r\nThese changes cannot be done using PR but you can check the diff between the I-D generated from the main branch and the latest I-D submitted to IETF from the README of this repository or using this link:\r\n\r\nhttps://author-tools.ietf.org/api/iddiff?doc_1=draft-ygb-ivy-passive-network-inventory&url_2=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/draft-ygb-ivy-passive-network-inventory.txt\r\n\r\nThis PR is proposing some clean-up in the repository structure, YANG data model and I-D text (fixing some idnits and aligning also with the guidelines in RFC 9907, formerly known as RFC 8407-bis)\r\n\r\nYou can check the diff between the I-D generated from this PR branch and the I-D generated from the main branch from the README of this repository or using this link:\r\n\r\nhttps://author-tools.ietf.org/api/iddiff?url_1=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/draft-ygb-ivy-passive-network-inventory.txt&url_2=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/clean-up/draft-ygb-ivy-passive-network-inventory.txt",
       "createdAt": "2026-03-19T02:59:38Z",
-      "updatedAt": "2026-03-19T03:00:33Z",
+      "updatedAt": "2026-03-25T08:59:20Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
@@ -624,7 +624,48 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDONDocYM7uTiQK",
+          "commit": {
+            "abbreviatedOid": "7645e4e"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-03-24T10:42:51Z",
+          "updatedAt": "2026-03-24T10:44:38Z",
+          "comments": [
+            {
+              "originalPosition": 475,
+              "body": "not clear the difference",
+              "createdAt": "2026-03-24T10:42:51Z",
+              "updatedAt": "2026-03-24T10:44:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDONDocYM7uuLJu",
+          "commit": {
+            "abbreviatedOid": "7645e4e"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-03-25T08:59:19Z",
+          "updatedAt": "2026-03-25T08:59:20Z",
+          "comments": [
+            {
+              "originalPosition": 475,
+              "body": "@sergiobelotti just removed the trailing spaces after the \";\"",
+              "createdAt": "2026-03-25T08:59:20Z",
+              "updatedAt": "2026-03-25T08:59:20Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 23,
@@ -640,13 +681,13 @@
       "labels": [],
       "body": "Draft minutes of the side meeting during IETF 2026 (March 19, 2026)",
       "createdAt": "2026-03-19T14:16:03Z",
-      "updatedAt": "2026-03-24T01:18:47Z",
+      "updatedAt": "2026-03-25T15:26:04Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
       "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "headRefName": "minutes-ietf-125",
-      "headRefOid": "c56fb5ec73e8c42874b55fe4dac8f2fdb0bd4197",
+      "headRefOid": "a1105c6923d05ae30b7af6e67a0c9dd5379ddbda",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,

@@ -16,7 +16,7 @@ Some clarification: passive components can be also part of an active NE. The ter
 
 Reviewed slide from Aihua (cable segmented into multiple segment):
 
-- [ ] @Aihua: please add a link to that slide
+- link to the slides: https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/blob/main/materials/draft-ygb-ivy-passive-network-inventory-00-ietf-122%20-%20v1.pptx
 
 Clarified that today the cable segments are modelled as child cables under the cable
 

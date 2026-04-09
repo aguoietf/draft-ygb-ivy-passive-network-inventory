@@ -13,7 +13,7 @@ This is the working area for the individual Internet-Draft, "A YANG Data Model f
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/blob/master/CONTRIBUTING.md).
 
 The contributing file also has tips on how to make contributions, if you
 don't already know how to do that.

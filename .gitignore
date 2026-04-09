@@ -22,3 +22,5 @@ draft-ygb-ivy-passive-network-inventory.xml
 package-lock.json
 report.xml
 !requirements.txt
+*.bash
+temp/

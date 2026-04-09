@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-26T02:35:58.557904+00:00",
+  "timestamp": "2026-04-09T02:34:40.917688+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -440,6 +440,94 @@
       "updatedAt": "2026-03-18T07:08:06Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 24,
+      "id": "I_kwDONDocYM773x1Q",
+      "title": "Add definition for passive inventory",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/24",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Proposed definition:\n\nPassive inventory contains a collection of inventory objects pertaining to network infrastructure that are not powered and have no direct management communication, and that are used to realize the underlying physical infrastructure carrying signals through a network. Passive inventory includes elements such as optical cables, fiber segments, splice points, closures, ducts, and supporting structures that do not perform active processing, forwarding, or control functions. These objects are maintained for purposes such as identification, location, connectivity, and lifecycle management.",
+      "createdAt": "2026-04-08T15:31:04Z",
+      "updatedAt": "2026-04-08T15:35:16Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "body": "Meeting on 04/08/2026:\n\nAgree with the definition in general, and note that there are cases where a passive device may be considered as powered, or may be unused (not carrying signal), but can still be modeled by the passive inventory.\nAgreed to add the following note to the definition of passive inventory:\n\n(add a non-exhaustive list of conscious exceptions)\n- Add a note to indicate that in the case of e.g. raman amplifier where a fiber is performing amplification stimulated by an external pump laser, that fiber is still considered as a passive device.\n- Another exception is e.g. a splitter embedded in an active device\n- Fibers that are not lit/used",
+          "createdAt": "2026-04-08T15:35:16Z",
+          "updatedAt": "2026-04-08T15:35:16Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "I_kwDONDocYM7737Ra",
+      "title": "modelling of the MPO/MPT cable",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/25",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Another use case to consider is the modelling of the MPO/MPT cable:\n\nhttps://majorcustomcable.com/product/cables/fiber-connectivity/mtp-mpo-cables/\n\nThis can be modelled as a multipoint cable with one A-end and multiple Z-ends. The numbering of the fibers within the cable need to be consistent in the A-end and Z-ends.",
+      "createdAt": "2026-04-08T15:37:39Z",
+      "updatedAt": "2026-04-08T15:37:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "I_kwDONDocYM7739eL",
+      "title": "modeling a fiber with splitter along the fiber",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/26",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "A different scenario is where there is a splitter along the fiber:\n\nhttps://ecatalog.corning.com/optical-communications/AU/en/Fiber-Optic-Hardware/Terminals/OptiSheath%C2%AE-MultiPort-Splitter-Stubless-Terminal/p/optisheath-multiport-splitter-stubless-terminal\n\nhttps://ecatalog.corning.com/optical-communications/AU/en/Fiber-Optic-Hardware/Terminals/OptiSheath%C2%AE-MultiPort-Splitter-Stubless-Terminal/p/optisheath-multiport-splitter-stubless-terminal\n\nhttps://www.alldataresource.com/CommScope-CC8312-000-OCC1P-Wideband-Splitter-planar-singlemode-1-x-32-symmetrical-split-ratio-0-250-mm-cable-field-installable_p_601802.html\n\nhttps://www.commscope.com/product-type/hubs-closures-terminals-boxes/access-terminals/fiber-terminals-hardened/itemmst-0nrh00-a0500u/\n\nhttps://ecatalog.corning.com/optical-communications/AU/en/Fiber-Optic-Hardware/Terminals/OptiSheath%C2%AE-MultiPort-Flex-Splitter-Terminal/p/optisheath-multiport-flex-splitter-terminal",
+      "createdAt": "2026-04-08T15:39:07Z",
+      "updatedAt": "2026-04-08T15:39:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 27,
+      "id": "I_kwDONDocYM774CQF",
+      "title": "modeling fiber closures",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/27",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "There was some discussion about the \"fiber closures\" which can contain multiple cables. Examples are available at the following URLs:\n\nhttps://raycom.cz/templates/it-technologie/images/eye_products/87/pdf/cz/datasheet-and-ordering-guide-tenio-fiber-closures.pdf\n\nhttps://www.commscope.com/product-type/hubs-closures-terminals-boxes/splice-closures/fiber-splice-closures/tenio/\n\nhttps://www.alcadon.com/PDF/PDF2019/CW6618-000_Product_specifications.pdf\n\nThe \"fiber closures\" can be modelled as passive component within an active NE or passive device. The A-end/Z-end of the cables contained within the \"fiber closures\" are port components which do not belong to this component.\n\n",
+      "createdAt": "2026-04-08T15:42:09Z",
+      "updatedAt": "2026-04-08T15:42:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDONDocYM774Dd2",
+      "title": "Do we need an ad-hoc model for cable joint box",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/28",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "should we model any passive device as NEs (including cable joint boxes) or only some passive devices and have an ad-hoc model for cable joint boxes",
+      "createdAt": "2026-04-08T15:42:52Z",
+      "updatedAt": "2026-04-08T15:42:52Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -605,24 +693,26 @@
       "id": "PR_kwDONDocYM7LuqTd",
       "title": "Clean up repository, YANG code and I-D text",
       "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/22",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The main branch has been directly updated to use the new template from Med:\r\n\r\nhttps://github.com/IETF-OPS-AD/I-D-with-yang-template\r\n\r\nThese changes cannot be done using PR but you can check the diff between the I-D generated from the main branch and the latest I-D submitted to IETF from the README of this repository or using this link:\r\n\r\nhttps://author-tools.ietf.org/api/iddiff?doc_1=draft-ygb-ivy-passive-network-inventory&url_2=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/draft-ygb-ivy-passive-network-inventory.txt\r\n\r\nThis PR is proposing some clean-up in the repository structure, YANG data model and I-D text (fixing some idnits and aligning also with the guidelines in RFC 9907, formerly known as RFC 8407-bis)\r\n\r\nYou can check the diff between the I-D generated from this PR branch and the I-D generated from the main branch from the README of this repository or using this link:\r\n\r\nhttps://author-tools.ietf.org/api/iddiff?url_1=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/draft-ygb-ivy-passive-network-inventory.txt&url_2=https://aguoietf.github.io/draft-ygb-ivy-passive-network-inventory/clean-up/draft-ygb-ivy-passive-network-inventory.txt",
       "createdAt": "2026-03-19T02:59:38Z",
-      "updatedAt": "2026-03-25T08:59:20Z",
+      "updatedAt": "2026-04-08T15:29:09Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
       "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "headRefName": "clean-up",
       "headRefOid": "7645e4ecb607ecd9edca7a8aae32122be3f9d8e3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-04-08T15:29:09Z",
+      "mergedAt": "2026-04-08T15:29:09Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "86584de10f2e74d1abb9c9340a412ad794c6bef7"
+      },
       "comments": [],
       "reviews": [
         {
@@ -664,6 +754,19 @@
               "updatedAt": "2026-03-25T08:59:20Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDONDocYM7y9yTz",
+          "commit": {
+            "abbreviatedOid": "7645e4e"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-08T15:29:01Z",
+          "updatedAt": "2026-04-08T15:29:01Z",
+          "comments": []
         }
       ]
     },
@@ -672,7 +775,7 @@
       "id": "PR_kwDONDocYM7L3a-B",
       "title": "Minutes of the 2026-03-19 side meeting",
       "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/23",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -681,17 +784,19 @@
       "labels": [],
       "body": "Draft minutes of the side meeting during IETF 2026 (March 19, 2026)",
       "createdAt": "2026-03-19T14:16:03Z",
-      "updatedAt": "2026-03-25T15:26:04Z",
+      "updatedAt": "2026-04-08T15:28:27Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "5e7274a5574115904ae4ba94b949260255b3054f",
       "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "headRefName": "minutes-ietf-125",
-      "headRefOid": "a1105c6923d05ae30b7af6e67a0c9dd5379ddbda",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "0b2374b71bddf8b2e36562e6beaa384f97341842",
+      "closedAt": "2026-04-08T15:28:27Z",
+      "mergedAt": "2026-04-08T15:28:27Z",
+      "mergedBy": "aguoietf",
+      "mergeCommit": {
+        "oid": "49b46382d81450c01eff124abc0935be61fda698"
+      },
       "comments": [
         {
           "author": "bradspau",
@@ -701,7 +806,21 @@
           "updatedAt": "2026-03-24T01:18:47Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDONDocYM7y9wpd",
+          "commit": {
+            "abbreviatedOid": "0b2374b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-08T15:27:55Z",
+          "updatedAt": "2026-04-08T15:27:55Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }

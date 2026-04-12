@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-09T02:34:40.917688+00:00",
+  "timestamp": "2026-04-12T02:50:07.337189+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -526,6 +526,22 @@
       "body": "should we model any passive device as NEs (including cable joint boxes) or only some passive devices and have an ad-hoc model for cable joint boxes",
       "createdAt": "2026-04-08T15:42:52Z",
       "updatedAt": "2026-04-08T15:42:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 29,
+      "id": "I_kwDONDocYM78VY-4",
+      "title": "Validate if the model covers the use case of OCS switch",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/29",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "To validate if the model covers the use case of an OCS switch, e.g. \nhttps://www.lumentum.com/en/blog/optical-circuit-switches-in-ai-hyperscale-data-centers",
+      "createdAt": "2026-04-09T16:00:22Z",
+      "updatedAt": "2026-04-09T16:00:22Z",
       "closedAt": null,
       "comments": []
     }

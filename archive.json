@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-12T02:50:07.337189+00:00",
+  "timestamp": "2026-04-28T03:28:41.250291+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -542,6 +542,22 @@
       "body": "To validate if the model covers the use case of an OCS switch, e.g. \nhttps://www.lumentum.com/en/blog/optical-circuit-switches-in-ai-hyperscale-data-centers",
       "createdAt": "2026-04-09T16:00:22Z",
       "updatedAt": "2026-04-09T16:00:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDONDocYM8AAAABAqXStA",
+      "title": "How do I associate a cable to a passive device port",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/30",
+      "state": "OPEN",
+      "author": "bradspau",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "While trying to utilise the current models how was it intended that the cable would terminate on a passive element port? At present I can only see this being done by oveloading the device-id fiield with passive port data information. This means use later is a string based search mechanism which impacts performance and processing. While the passive-device itself has a port I cannot see how a cable is connected to this port because the grouping for the connected-device-end only provides a device-d for the cable.\n\n      case passive {\n        leaf device-id {\n          type string;\n          must \"derived-from-or-self(../device-type,\n               'nwi-passive:passive-device')\";\n          description\n            \"Connected passive device identifier.\";\n        }\n      }\n\nWhile this enables me to say certain OLTs may be connected to a ODF, it does not enable me to say what OLT are connected to what distribution cables on the other side of the ODF. That is I cannot traverse from the OLT towards the ONTs easily unless I build the semantics into the device name. eg. device-id_port_num\n\nIs the model intended to enable traverals of OLTs towards ONTs for instance? The documentation shows that passive devices have ports and I suppose the expectation was cables could connect to ports. Is there some thing I am missing in how to define a cable connects to a specific passive device port rather than just the device-id?\n",
+      "createdAt": "2026-04-27T23:06:27Z",
+      "updatedAt": "2026-04-27T23:06:27Z",
       "closedAt": null,
       "comments": []
     }

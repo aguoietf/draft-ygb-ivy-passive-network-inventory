@@ -99,11 +99,17 @@ contributor:
    
    Passive inventory contains a collection of inventory objects pertaining to the passive infrastructure that are not powered and have no direct management communication, and that are used to realize the underlying physical infrastructure carrying signals through a network. Passive inventory includes elements such as optical cables, fiber segments, splice points, closures, ducts, and supporting structures that do not perform active processing, forwarding, or control functions. These objects are maintained for purposes such as identification, location, connectivity, and lifecycle management.
 
-    While passive inventory generally refers to non‑powered infrastructure with no direct management communication, certain exceptions exist within the scope of passive inventory with respect to these characteristics. Following are a non-exhausive list of exceptions:
-      - Fibers used in Raman amplification, where the fiber itself participates in amplification stimulated by an externally supplied pump laser. In this scenario, the fiber remains may be considered as a passive element.
-      - Passive optical components embedded within an active device, such as an optical splitter located inside a managed network element.
-      - Fibers or other passive elements that are not currently lit or carrying traffic, but are still part of the physical infrastructure and require inventory representation.
-      - Passive devices that may have auxiliary or incidental powering (e.g., for environmental monitoring or enclosure heating) but do not perform active forwarding, processing, or control functions.
+   While passive inventory generally refers to non‑powered infrastructure with no direct management 
+   communication, certain exceptions exist within the scope of passive inventory with respect to 
+   these characteristics. Following are a non-exhausive list of exceptions:
+    
+   - Fibers used in Raman amplification, where the fiber itself participates in amplification stimulated by an externally supplied pump laser. In this scenario, the fiber remains may be considered as a passive element.
+      
+   - Passive optical components embedded within an active device, such as an optical splitter located inside a managed network element.
+      
+   - Fibers or other passive elements that are not currently lit or carrying traffic, but are still part of the physical infrastructure and require inventory representation.
+      
+   - Passive devices that may have auxiliary or incidental powering (e.g., for environmental monitoring or enclosure heating) but do not perform active forwarding, processing, or control functions.
 
    {{!I-D.draft-ietf-ivy-network-inventory-yang}} incorporates the component concept from {{!RFC8348}} to detail the equipment and holder information of a NE. This encompasses chassis, slot/sub-slot, board/sub-board, port, and transceiver. As these items are recognized by the NE through internal protocols, the passive devices that cannot be discovered by the NE are thus not included in the modeling and needs to be addressed.
 

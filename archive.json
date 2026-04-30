@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-28T03:28:41.250291+00:00",
+  "timestamp": "2026-04-30T03:28:20.284405+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -560,6 +560,22 @@
       "updatedAt": "2026-04-27T23:06:27Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDONDocYM8AAAABA0KMjw",
+      "title": "Impacts for different Identifier Key Across Active and Passive Inventory Models for Cross-Domain YANG Queries",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/31",
+      "state": "OPEN",
+      "author": "bradspau",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, there is a divergence in how primary identifiers (keys) are defined between active Network Elements and passive inventory entities within the IETF network inventory models.\n\n- Active devices (e.g., ietf-network-inventory) typically use leaf ne-id as their list key.\n- Passive devices (e.g., ietf-nwi-passive-inventory) typically use leaf id or equipment-id as their list key.\n\nWhile these models serve different domains, network controllers and orchestrators frequently need to query and correlate data across both. The divergence in key naming introduces significant overhead for native YANG querying (NETCONF/RESTCONF) and breaks referential integrity options.\n\nPotential isues in trying to utilise the models to consider.\n\n- Because the key leaf names differ, a controller cannot use a generic XPath query to find a node if it does not already know whether the node is active or passive.\n- If an orchestrator is tracing a path or topology that crosses from an active ONT into a passive ODF, the lack of a shared base ID forces \"client-side joins.\" The client must query the active inventory via RESTCONF, parse the payload, map the custom reference strings, and then fire a second set of RESTCONF queries targeting the passive inventory list.\n- If another YANG module wants to create a generalised link to any physical device (active or passive), it cannot use a single leafref. A leafref must point to a specific path and key. Because the keys are different (ne-id vs id), developers may be forced to use generic type string without the strict referential integrity validation that a proper leafref provides.\n\n",
+      "createdAt": "2026-04-29T10:15:45Z",
+      "updatedAt": "2026-04-29T10:15:45Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -853,6 +869,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 32,
+      "id": "PR_kwDONDocYM7WviLb",
+      "title": "initial definition for passive inventory",
+      "url": "https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/pull/32",
+      "state": "OPEN",
+      "author": "aguoietf",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-04-29T14:00:09Z",
+      "updatedAt": "2026-04-29T14:03:32Z",
+      "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "baseRefName": "main",
+      "baseRefOid": "53da3cdc1a2cdf48532f668946069c54ba33d5e0",
+      "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
+      "headRefName": "inventory-definition",
+      "headRefOid": "6bdd6272c53407ffbc2982ee58a492ec81ba59be",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }

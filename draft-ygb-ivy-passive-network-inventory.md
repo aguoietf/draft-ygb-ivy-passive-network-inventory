@@ -103,7 +103,7 @@ contributor:
    communication, certain exceptions exist within the scope of passive inventory with respect to 
    these characteristics. Following are a non-exhausive list of exceptions:
     
-   - Fibers used in Raman amplification, where the fiber itself participates in amplification stimulated by an externally supplied pump laser. In this scenario, the fiber remains may be considered as a passive element.
+   - Fibers used in Raman amplification, where the fiber itself participates in amplification stimulated by an externally supplied pump laser. In this scenario, the fiber is still considered as a passive element.
       
    - Passive optical components embedded within an active device, such as an optical splitter located inside a managed network element.
       

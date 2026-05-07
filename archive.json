@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-30T03:28:20.284405+00:00",
+  "timestamp": "2026-05-07T03:26:03.123044+00:00",
   "repo": "aguoietf/draft-ygb-ivy-passive-network-inventory",
   "labels": [
     {
@@ -882,18 +882,33 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-04-29T14:00:09Z",
-      "updatedAt": "2026-04-29T14:03:32Z",
+      "updatedAt": "2026-05-06T15:49:27Z",
       "baseRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "baseRefName": "main",
       "baseRefOid": "53da3cdc1a2cdf48532f668946069c54ba33d5e0",
       "headRepository": "aguoietf/draft-ygb-ivy-passive-network-inventory",
       "headRefName": "inventory-definition",
-      "headRefOid": "6bdd6272c53407ffbc2982ee58a492ec81ba59be",
+      "headRefOid": "f5d58fecc7456fa38195397a89569b777c5e095f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "mamali68",
+          "authorAssociation": "COLLABORATOR",
+          "body": "a comment for sentence on Line 141 \r\nthis sentence is a bit confusing, so the portion of passive inventory in the network that is installed but not currently in use. why is this an exception to the definition of passive element stated above? to me it looks like an augment to the scope and not an exception like other points (point1, point2 and point 4). \r\nimho, the sentence can be added to the introduction as a scope. ",
+          "createdAt": "2026-05-06T15:28:44Z",
+          "updatedAt": "2026-05-06T15:28:44Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "OWNER",
+          "body": "I think Line 141 refer to the fibers/cables that are not currently used/connected. They are \"not powered\" and not \"used to realize the underlying physical infrastructure carrying signals through a network\" as specified in the general description. Could probably better word that.",
+          "createdAt": "2026-05-06T15:49:26Z",
+          "updatedAt": "2026-05-06T15:49:26Z"
+        }
+      ],
       "reviews": []
     }
   ]
